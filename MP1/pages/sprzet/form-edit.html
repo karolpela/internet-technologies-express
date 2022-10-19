@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Wypożyczalnia</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1>Wypożyczalnia sprzętu sportowego</h1>
+        <img src="/images/logo.png" alt="Logo wypożyczalni">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="/pages/klient/list.html">Klienci</a></li>
+            <li><a href="/pages/wypozyczenie/list.html">Wypożyczenia</a></li>
+            <li><a href="/pages/sprzet/list.html">Sprzęt</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Edycja sprzętu</h2>
+        <form>
+            <label for="type">Typ: *</label>
+            <select name="type" id="type">
+                <option>-- Wybierz typ --</option>
+                <option value="1" selected>Rolki</option>
+                <option value="2">Łyżwy</option>
+                <option value="3">Wrotki</option>
+            </select>
+            <span id="errorType"></span>
+            <label for="size">Rozmiar: *</label>
+            <input type="number" name="size" id="size" value="42" min="30" max="50" step="0.5" required>
+            <span id="errorSize"></span>
+            <label for="purpose">Przeznaczenie: *</label>
+            <input type="text" name="purpose" id="purpose" value="Hokejowe" required>
+            <span id="errorPurpose"></span>
+            <div>
+                <p id="errorsSummary"></p>
+                <input type="submit" value="Edytuj">
+                <a href="list.html">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+        Karol Peła, s20265
+    </footer>
+</body>
+
+</html>

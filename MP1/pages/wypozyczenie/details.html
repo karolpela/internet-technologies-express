@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Wypożyczalnia</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1>Wypożyczalnia sprzętu sportowego</h1>
+        <img src="/images/logo.png" alt="Logo wypożyczalni">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="/pages/klient/list.html">Klienci</a></li>
+            <li><a href="/pages/wypozyczenie/list.html">Wypożyczenia</a></li>
+            <li><a href="/pages/sprzet/list.html">Sprzęt</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Szczegóły wypożyczenia</h2>
+        <form>
+            <label for="klient">Klient: *</label>
+            <select name="klient" id="klient" disabled>
+                <option>-- Wybierz klienta --</option>
+                <option value="1" selected>1 - Jan Kowalski</option>
+                <option value="2">2 - Adam Nowak</option>
+                <option value="3">3 - Maciej Szewczyk</option>
+            </select>
+            <span id="errorKlient"></span>
+            <label for="sprzet">Sprzęt: *</label>
+            <select name="sprzet" id="sprzet" disabled>
+                <option>-- Wybierz sprzęt --</option>
+                <option value="1" selected>1 - Rolki figurowe 42</option>
+                <option value="2">2 - Łyżwy hokejowe 39</option>
+                <option value="3">3 - Wrotki disco 41</option>
+            </select>
+            <span id="errorSprzet"></span>
+            <label for="startDate">Data od: *</label>
+            <input type="date" name="startDate" id="startDate" value="2022-10-02" disabled>
+            <span id="errorStartDate"></span>
+            <label for="endDate">Data do: *</label>
+            <input type="date" name="endDate" id="endDate" value="2022-10-08" disabled>
+            <span id="errorEndDate"></span>
+        </form>
+        <a href="form-edit.html">Edytuj</a>
+
+        <h2>Szczegóły wypożyczeń</h2>
+        <label for="wypozyczenie">Wypożyczenie:</label>
+        <select name="wypozyczenie" id="wypozyczenie">
+            <option>-- Wybierz wypożyczenie --</option>
+            <option value="4">2022-09-15 - 2022-09-19</option>
+            <option value="2">2022-07-23 - 2022-07-24</option>
+            <option value="5">2022-10-02 - 2022-10-08</option>
+        </select>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Sprzęt</th>
+                    <th>Przeznaczenie</th>
+                    <th>Data od</th>
+                    <th>Data do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>Figurowe</td>
+                    <td>2022-10-02</td>
+                    <td>2022-10-08</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="list.html">Powrót</a>
+    </main>
+    <footer>
+        Karol Peła, s20265
+    </footer>
+</body>
+
+</html>

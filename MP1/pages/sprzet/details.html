@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Wypożyczalnia</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1>Wypożyczalnia sprzętu sportowego</h1>
+        <img src="/images/logo.png" alt="Logo wypożyczalni">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="/pages/klient/list.html">Klienci</a></li>
+            <li><a href="/pages/wypozyczenie/list.html">Wypożyczenia</a></li>
+            <li><a href="/pages/sprzet/list.html">Sprzęt</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Szczegóły sprzętu</h2>
+        <form>
+            <label for="type">Typ: *</label>
+            <select name="type" id="type" disabled>
+                <option>-- Wybierz typ --</option>
+                <option value="1" selected>Rolki</option>
+                <option value="2">Łyżwy</option>
+                <option value="3">Wrotki</option>
+            </select>
+            <label for="size">Rozmiar: *</label>
+            <input type="number" name="size" id="size" value="42" disabled>
+            <label for="purpose">Przeznaczenie: *</label>
+            <input type="text" name="purpose" id="purpose" value="Hokejowe" disabled>
+        </form>
+        <a href="form-edit.html">Edytuj</a>
+
+        <h2>Szczegóły wypożyczeń</h2>
+        <label for="wypozyczenie">Wypożyczenie:</label>
+        <select name="wypozyczenie" id="wypozyczenie">
+            <option>-- Wybierz wypożyczenie --</option>
+            <option value="2">2022-07-23 - 2022-07-24</option>
+            <option value="4">2022-09-15 - 2022-09-19</option>
+            <option value="5">2022-10-02 - 2022-10-08</option>
+        </select>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Sprzęt</th>
+                    <th>Przeznaczenie</th>
+                    <th>Data od</th>
+                    <th>Data do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>Hokejowe</td>
+                    <td>2022-10-02</td>
+                    <td>2022-10-08</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="list.html">Powrót</a>
+    </main>
+    <footer>
+        Karol Peła, s20265
+    </footer>
+</body>
+
+</html>

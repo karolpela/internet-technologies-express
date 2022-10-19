@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Wypożyczalnia</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1>Wypożyczalnia sprzętu sportowego</h1>
+        <img src="/images/logo.png" alt="Logo wypożyczalni">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="/pages/klient/list.html">Klienci</a></li>
+            <li><a href="/pages/wypozyczenie/list.html">Wypożyczenia</a></li>
+            <li><a href="/pages/sprzet/list.html">Sprzęt</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Nowy klient</h2>
+        <form>
+            <label for="firstName">Imię: *</label>
+            <input type="text" name="firstName" id="firstName" required>
+            <span id="errorFirstName">Imię jest wymagane</span>
+            <label for="lastName">Nazwisko: *</label>
+            <input type="text" name="lastName" id="lastName" required>
+            <span id="errorLastName">Nazwisko jest wymagane</span>
+            <label for="phoneNo">Nr telefonu: *</label>
+            <input type="text" name="phoneNo" id="phoneNo" required>
+            <span id="errorPhoneNo">Numer telefonu jest wymagany</span>
+            <div>
+                <p id="errorsSummary">Formularz zawiera błędy</p>
+                <input type="submit" value="Edytuj">
+                <a href="list.html">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+        Karol Peła, s20265
+    </footer>
+</body>
+
+</html>
