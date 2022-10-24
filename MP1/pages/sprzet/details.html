@@ -23,51 +23,23 @@
     </nav>
     <main>
         <h2>Szczegóły sprzętu</h2>
-        <form>
-            <label for="type">Typ: *</label>
+        <form class="form">
+            <label for="type">Typ: <span class="symbol-required">*</span></label>
             <select name="type" id="type" disabled>
                 <option>-- Wybierz typ --</option>
                 <option value="1" selected>Rolki</option>
                 <option value="2">Łyżwy</option>
                 <option value="3">Wrotki</option>
             </select>
-            <label for="size">Rozmiar: *</label>
+            <label for="size">Rozmiar: <span class="symbol-required">*</span></label>
             <input type="number" name="size" id="size" value="42" disabled>
-            <label for="purpose">Przeznaczenie: *</label>
+            <label for="purpose">Przeznaczenie: <span class="symbol-required">*</span></label>
             <input type="text" name="purpose" id="purpose" value="Hokejowe" disabled>
+            <div class="form-buttons">
+                <a href="form-edit.html" class="form-button-edit">Edytuj</a>
+                <a href="list.html" class="form-button-back">Powrót</a>
+            </div>
         </form>
-        <a href="form-edit.html">Edytuj</a>
-
-        <h2>Szczegóły wypożyczeń</h2>
-        <label for="wypozyczenie">Wypożyczenie:</label>
-        <select name="wypozyczenie" id="wypozyczenie">
-            <option>-- Wybierz wypożyczenie --</option>
-            <option value="2">2022-07-23 - 2022-07-24</option>
-            <option value="4">2022-09-15 - 2022-09-19</option>
-            <option value="5">2022-10-02 - 2022-10-08</option>
-        </select>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Sprzęt</th>
-                    <th>Przeznaczenie</th>
-                    <th>Data od</th>
-                    <th>Data do</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>Hokejowe</td>
-                    <td>2022-10-02</td>
-                    <td>2022-10-08</td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="list.html">Powrót</a>
     </main>
     <footer>
         Karol Peła, s20265

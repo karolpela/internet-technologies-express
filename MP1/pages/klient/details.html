@@ -23,26 +23,20 @@
     </nav>
     <main>
         <h2>Szczegóły klienta</h2>
-        <form>
-            <label for="firstName">Imię: *</label>
-            <input type="text" name="firstName" id="firstName" value="Jan" disabled>
-            <label for="lastName">Nazwisko: *</label>
+        <form class="form">
+            <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+            <input type="text" name="firstName" id="firstName" value="Jan" W disabled>
+            <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
             <input type="text" name="lastName" id="lastName" value="Kowalski" disabled>
-            <label for="phoneNo">Nr telefonu: *</label>
+            <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
             <input type="text" name="phoneNo" id="phoneNo" value="123456789" disabled>
+            <div class="form-buttons">
+                <a href="form-edit.html" class="form-button-edit">Edytuj</a>
+            </div>
         </form>
-        <a href="form-edit.html">Edytuj</a>
 
         <h2>Szczegóły wypożyczeń</h2>
-        <label for="wypozyczenie">Wypożyczenie:</label>
-        <select name="wypozyczenie" id="wypozyczenie">
-            <option>-- Wybierz wypożyczenie --</option>
-            <option value="2">2022-07-23 - 2022-07-24</option>
-            <option value="4">2022-09-15 - 2022-09-19</option>
-            <option value="5">2022-10-02 - 2022-10-08</option>
-        </select>
-
-        <table>
+        <table class="table-list">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -62,7 +56,9 @@
                 </tr>
             </tbody>
         </table>
-        <a href="list.html">Powrót</a>
+        <div class="form-buttons">
+            <a href="list.html" class="form-button-back">Powrót</a>
+        </div>
     </main>
     <footer>
         Karol Peła, s20265

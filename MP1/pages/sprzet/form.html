@@ -23,8 +23,8 @@
     </nav>
     <main>
         <h2>Nowy sprzęt</h2>
-        <form>
-            <label for="type">Typ: *</label>
+        <form class="form">
+            <label for="type">Typ: <span class="symbol-required">*</span></label>
             <select name="type" id="type">
                 <option>-- Wybierz typ --</option>
                 <option value="1">Rolki</option>
@@ -32,16 +32,16 @@
                 <option value="3">Wrotki</option>
             </select>
             <span id="errorType"></span>
-            <label for="size">Rozmiar: *</label>
+            <label for="size">Rozmiar: <span class="symbol-required">*</span></label>
             <input type="number" name="size" id="size" min="30" max="50" step="0.5" required>
             <span id="errorSize"></span>
-            <label for="purpose">Przeznaczenie: *</label>
+            <label for="purpose">Przeznaczenie: <span class="symbol-required">*</span></label>
             <input type="text" name="purpose" id="purpose" required>
             <span id="errorPurpose"></span>
-            <div>
+            <div class="form-buttons">
                 <p id="errorsSummary"></p>
-                <input type="submit" value="Edytuj">
-                <a href="list.html">Anuluj</a>
+                <input type="submit" value="Dodaj" class="form-button-submit">
+                <a href="list.html" class="form-button-cancel">Anuluj</a>
             </div>
         </form>
     </main>

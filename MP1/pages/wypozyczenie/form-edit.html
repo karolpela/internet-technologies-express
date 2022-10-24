@@ -23,8 +23,8 @@
     </nav>
     <main>
         <h2>Edycja wypożyczenia</h2>
-        <form>
-            <label for="klient">Klient: *</label>
+        <form class="form">
+            <label for="klient">Klient: <span class="symbol-required">*</span></label>
             <select name="klient" id="klient">
                 <option>-- Wybierz klienta --</option>
                 <option value="1" selected>1 - Jan Kowalski</option>
@@ -32,7 +32,7 @@
                 <option value="3">3 - Maciej Szewczyk</option>
             </select>
             <span id="errorKlient"></span>
-            <label for="sprzet">Sprzęt: *</label>
+            <label for="sprzet">Sprzęt: <span class="symbol-required">*</span></label>
             <select name="sprzet" id="sprzet">
                 <option>-- Wybierz sprzęt --</option>
                 <option value="1" selected>1 - Rolki figurowe 42</option>
@@ -40,16 +40,16 @@
                 <option value="3">3 - Wrotki disco 41</option>
             </select>
             <span id="errorSprzet"></span>
-            <label for="startDate">Data od: *</label>
+            <label for="startDate">Data od: <span class="symbol-required">*</span></label>
             <input type="date" name="startDate" id="startDate" value="2022-10-02" required>
             <span id="errorStartDate"></span>
-            <label for="endDate">Data do: *</label>
+            <label for="endDate">Data do: <span class="symbol-required">*</span></label>
             <input type="date" name="endDate" id="endDate" value="2022-10-08" required>
             <span id="errorEndDate"></span>
-            <div>
+            <div class="form-buttons">
                 <p id="errorsSummary"></p>
-                <input type="submit" value="Edytuj">
-                <a href="list.html">Anuluj</a>
+                <input type="submit" value="Edytuj" class="form-button-edit">
+                <a href="list.html" class="form-button-back">Powrót</a>
             </div>
         </form>
     </main>

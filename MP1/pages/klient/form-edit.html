@@ -23,20 +23,20 @@
     </nav>
     <main>
         <h2>Edycja klienta</h2>
-        <form>
-            <label for="firstName">Imię: *</label>
+        <form class="form">
+            <label for="firstName">Imię: <span class="symbol-required">*</span></label>
             <input type="text" name="firstName" id="firstName" value="Jan" required>
             <span id="errorFirstName"></span>
-            <label for="lastName">Nazwisko: *</label>
+            <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
             <input type="text" name="lastName" id="lastName" value="Kowalski" required>
             <span id="errorLastName"></span>
-            <label for="phoneNo">Nr telefonu: *</label>
+            <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
             <input type="number" name="phoneNo" id="phoneNo" value="123456789" min="100000000" max="999999999" required>
             <span id="errorPhoneNo"></span>
             <div>
                 <p id="errorsSummary"></p>
-                <input type="submit" value="Edytuj">
-                <a href="list.html">Anuluj</a>
+                <input type="submit" value="Edytuj" class="form-button-edit">
+                <a href="list.html" class="form-button-back">Powrót</a>
             </div>
         </form>
     </main>

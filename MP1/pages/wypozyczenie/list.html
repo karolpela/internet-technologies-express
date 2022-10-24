@@ -17,13 +17,13 @@
         <ul>
             <li><a href="/index.html">Strona główna</a></li>
             <li><a href="/pages/klient/list.html">Klienci</a></li>
-            <li><a href="/pages/wypozyczenie/list.html">Wypożyczenia</a></li>
+            <li><a href="/pages/wypozyczenie/list.html" class="active">Wypożyczenia</a></li>
             <li><a href="/pages/sprzet/list.html">Sprzęt</a></li>
         </ul>
     </nav>
     <main>
         <h2>Lista wypożyczeń</h2>
-        <table>
+        <table class="table-list">
             <thead>
                 <tr>
                     <th>Klient</th>
@@ -40,16 +40,16 @@
                     <td>2022-10-02</td>
                     <td>2022-10-08</td>
                     <td>
-                        <ul>
-                            <li><a href="details.html">Szczegóły</a></li>
-                            <li><a href="form-edit.html">Edytuj</a></li>
-                            <li><a href="list.html">Usuń</a></li>
+                        <ul class="list-actions">
+                            <li><a href="details.html" class="list-actions-button-details">Szczegóły</a></li>
+                            <li><a href="form-edit.html" class="list-actions-button-edit">Edytuj</a></li>
+                            <li><a href="list.html" class="list-actions-button-delete">Usuń</a></li>
                         </ul>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p><a href="form.html">Dodaj nowe wypożyczenie</a></p>
+        <p><a href="form.html" class="button-add">Dodaj nowe wypożyczenie</a></p>
     </main>
     <footer>
         Karol Peła, s20265

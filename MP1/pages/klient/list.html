@@ -16,14 +16,14 @@
     <nav>
         <ul>
             <li><a href="/index.html">Strona główna</a></li>
-            <li><a href="/pages/klient/list.html">Klienci</a></li>
+            <li><a href="/pages/klient/list.html" class="active">Klienci</a></li>
             <li><a href="/pages/wypozyczenie/list.html">Wypożyczenia</a></li>
             <li><a href="/pages/sprzet/list.html">Sprzęt</a></li>
         </ul>
     </nav>
     <main>
         <h2>Lista klientów</h2>
-        <table>
+        <table class="table-list">
             <thead>
                 <tr>
                     <th>Imię</th>
@@ -38,16 +38,28 @@
                     <td>Kowalski</td>
                     <td>jan.kowalski@gmail.com</td>
                     <td>
-                        <ul>
-                            <li><a href="details.html">Szczegóły</a></li>
-                            <li><a href="form-edit.html">Edytuj</a></li>
-                            <li><a href="list.html">Usuń</a></li>
+                        <ul class="list-actions">
+                            <li><a href="details.html" class="list-actions-button-details">Szczegóły</a></li>
+                            <li><a href="form-edit.html" class="list-actions-button-edit">Edytuj</a></li>
+                            <li><a href="list.html" class="list-actions-button-delete">Usuń</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Krzysztof</td>
+                    <td>Janowski</td>
+                    <td>krzysztof.janowski@gmail.com</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li><a href="details.html" class="list-actions-button-details">Szczegóły</a></li>
+                            <li><a href="form-edit.html" class="list-actions-button-edit">Edytuj</a></li>
+                            <li><a href="list.html" class="list-actions-button-delete">Usuń</a></li>
                         </ul>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p><a href="form.html">Dodaj nowego klienta</a></p>
+        <p><a href="form.html" class="button-add">Dodaj nowego klienta</a></p>
     </main>
     <footer>
         Karol Peła, s20265
