@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    min-width: 600px;
+    min-width: 360px;
 }
 
 header,
@@ -30,15 +30,8 @@ footer {
 }
 
 header {
-    overflow: auto;
-}
-
-header h1 {
-    float: left;
-}
-
-header img {
-    float: right
+    display: flex;
+    justify-content: space-between;
 }
 
 nav {
@@ -46,13 +39,9 @@ nav {
 }
 
 nav ul {
+    display: flex;
     padding: 0;
-    overflow: hidden;
     list-style-type: none;
-}
-
-nav ul li {
-    float: left;
 }
 
 nav ul li a {
@@ -223,7 +212,9 @@ textarea {
 
 .form {
     margin-left: 2rem;
-    width: 300px;
+    display: grid;
+    grid-template-columns: 150px 300px 1fr;
+    gap: 1rem;
 }
 
 .form select,
@@ -252,6 +243,7 @@ textarea {
 
 .form-buttons {
     margin-top: 2rem;
+    grid-column: 1 / span 2;
 }
 
 .form-button-submit,
@@ -281,4 +273,95 @@ textarea {
     line-height: 2.25rem;
     margin-top: 0.5em;
     color: #e74c3c;
+}
+
+.material-symbols-outlined {
+    display: none;
+}
+
+/* Media queries */
+
+@media all and (max-width: 720px) {
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    header h1 {
+        text-align: center;
+    }
+
+    header img {
+        align-self: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        flex-basis: 50%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+        row-gap: unset;
+        margin-left: unset;
+    }
+
+    .form-buttons {
+        grid-column: 1 / 1;
+    }
+
+    .list-actions li {
+        display: block;
+    }
+
+    .list-actions li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .list-actions-button-details,
+    .list-actions-button-edit,
+    .list-actions-button-delete {
+        font-size: 0px;
+        width: 32px;
+        height: 32px;
+        padding: 0rem 0rem;
+        margin: unset;
+    }
+
+    .material-symbols-outlined {
+        display: unset;
+    }
+}
+
+@media all and (max-width: 400px) {
+
+    body,
+    nav,
+    nav ul,
+    header,
+    main,
+    footer {
+        margin: 0;
+    }
+
+    nav ul li {
+        flex-basis: 100%;
+    }
 }
