@@ -188,11 +188,6 @@ main h2 {
     background-color: #2ecc71;
 }
 
-.form-button-edit,
-.form-button-back {
-    display: inline-block;
-}
-
 /* New record form */
 
 button,
@@ -251,13 +246,19 @@ textarea {
     width: 100%;
 }
 
-.form-button-cancel {
+.form-button-cancel,
+.form-button-edit {
     box-sizing: border-box;
     display: block;
 }
 
-.form-button-submit {
+.form-button-submit,
+.form-button-edit {
     margin-bottom: 0.5rem;
+}
+
+.form-button-edit {
+    display: inline-block;
 }
 
 /* Form errors */
@@ -342,7 +343,7 @@ textarea {
         width: 32px;
         height: 32px;
         padding: 0rem 0rem;
-        margin: unset;
+        margin: 4px;
     }
 
     .material-symbols-outlined {
@@ -364,4 +365,14 @@ textarea {
     nav ul li {
         flex-basis: 100%;
     }
+
+    table.table-list th:nth-child(2) ~ th,
+    table.table-list td:nth-child(2) ~ td {
+        display: none
+    }
+
+    table.table-list th:last-child,
+    table.table-list td:last-child {
+        display: table-cell !important; 
+    } 
 }

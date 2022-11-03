@@ -26,12 +26,17 @@
         <form class="form">
             <label for="firstName">Imię: <span class="symbol-required">*</span></label>
             <input type="text" name="firstName" id="firstName" value="Jan" W disabled>
+            <span id="errorFirstName" class="errors-text"></span>
             <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
             <input type="text" name="lastName" id="lastName" value="Kowalski" disabled>
+            <span id="errorLastName" class="errors-text"></span>
             <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
             <input type="text" name="phoneNo" id="phoneNo" value="123456789" disabled>
+            <span id="errorPhoneNo" class="errors-text"></span>
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <a href="form-edit.html" class="form-button-edit">Edytuj</a>
+                <a href="list.html" class="form-button-back">Powrót</a>
             </div>
         </form>
 
@@ -56,9 +61,6 @@
                 </tr>
             </tbody>
         </table>
-        <div class="form-buttons">
-            <a href="list.html" class="form-button-back">Powrót</a>
-        </div>
     </main>
     <footer>
         Karol Peła, s20265

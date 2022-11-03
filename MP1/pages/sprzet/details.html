@@ -31,15 +31,41 @@
                 <option value="2">Łyżwy</option>
                 <option value="3">Wrotki</option>
             </select>
+            <span id="errorType"></span>
             <label for="size">Rozmiar: <span class="symbol-required">*</span></label>
             <input type="number" name="size" id="size" value="42" disabled>
+            <span id="errorSize"></span>
             <label for="purpose">Przeznaczenie: <span class="symbol-required">*</span></label>
             <input type="text" name="purpose" id="purpose" value="Hokejowe" disabled>
+            <span id="errorPurpose"></span>
             <div class="form-buttons">
+                <p id="errorsSummary"></p>
                 <a href="form-edit.html" class="form-button-edit">Edytuj</a>
                 <a href="list.html" class="form-button-back">Powrót</a>
             </div>
         </form>
+
+        <h2>Szczegóły wypożyczeń</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imie</th>
+                    <th>Nazwisko</th>
+                    <th>Nr telefonu</th>
+                    <th>Data od</th>
+                    <th>Data do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jan</td>
+                    <td>Kowalski</td>
+                    <td>123456789</td>
+                    <td>2022-10-02</td>
+                    <td>2022-10-08</td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <footer>
         Karol Peła, s20265
