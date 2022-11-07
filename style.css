@@ -208,7 +208,7 @@ textarea {
 .form {
     margin-left: 2rem;
     display: grid;
-    grid-template-columns: 150px 300px 1fr;
+    grid-template-columns: 170px 300px 1fr;
     gap: 1rem;
 }
 
@@ -366,13 +366,13 @@ textarea {
         flex-basis: 100%;
     }
 
-    table.table-list th:nth-child(2) ~ th,
-    table.table-list td:nth-child(2) ~ td {
+    table.table-list th:nth-child(2)~th,
+    table.table-list td:nth-child(2)~td {
         display: none
     }
 
     table.table-list th:last-child,
     table.table-list td:last-child {
-        display: table-cell !important; 
-    } 
+        display: table-cell !important;
+    }
 }
