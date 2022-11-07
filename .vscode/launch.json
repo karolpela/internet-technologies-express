@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "msedge",
+            "name": "Debug current file in Edge",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/${relativeFile}"
+        }
+    ]
+}
