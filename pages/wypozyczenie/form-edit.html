@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Wypożyczalnia</title>
     <link rel="stylesheet" href="/style.css" type="text/css">
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationWypozyczenieForm.js"></script>
 </head>
 
 <body>
@@ -23,31 +25,32 @@
     </nav>
     <main>
         <h2>Edycja wypożyczenia</h2>
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
             <label for="klient">Klient: <span class="symbol-required">*</span></label>
             <select name="klient" id="klient">
-                <option>-- Wybierz klienta --</option>
+                <option value="">-- Wybierz klienta --</option>
                 <option value="1" selected>1 - Jan Kowalski</option>
                 <option value="2">2 - Adam Nowak</option>
                 <option value="3">3 - Maciej Szewczyk</option>
             </select>
-            <span id="errorKlient"></span>
+            <span id="errorKlient" class="errors-text"></span>
             <label for="sprzet">Sprzęt: <span class="symbol-required">*</span></label>
             <select name="sprzet" id="sprzet">
-                <option>-- Wybierz sprzęt --</option>
+                <option value="">-- Wybierz sprzęt --</option>
                 <option value="1" selected>1 - Rolki figurowe 42</option>
                 <option value="2">2 - Łyżwy hokejowe 39</option>
                 <option value="3">3 - Wrotki disco 41</option>
             </select>
-            <span id="errorSprzet"></span>
+            <span id="errorSprzet" class="errors-text"></span>
             <label for="startDate">Data od: <span class="symbol-required">*</span></label>
+            <!-- TODO change so that the modified value is validated -->
             <input type="date" name="startDate" id="startDate" value="2022-10-02" required>
-            <span id="errorStartDate"></span>
+            <span id="errorStartDate" class="errors-text"></span>
             <label for="endDate">Data do: <span class="symbol-required">*</span></label>
             <input type="date" name="endDate" id="endDate" value="2022-10-08" required>
-            <span id="errorEndDate"></span>
+            <span id="errorEndDate" class="errors-text"></span>
             <div class="form-buttons">
-                <p id="errorsSummary"></p>
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" value="Edytuj" class="form-button-edit">
                 <a href="list.html" class="form-button-back">Powrót</a>
             </div>

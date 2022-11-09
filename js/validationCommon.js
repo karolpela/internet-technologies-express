@@ -100,3 +100,11 @@ function checkDateIfAfter(value, compareTo) {
     }
     return true;
 }
+
+function checkShoeSize(value) { // true for eg. 40 or 40.5
+    if (!value) {
+        return false;
+    }
+    const pattern = /[1-9][0-9](\.5)?/;
+    return pattern.test(value);
+}

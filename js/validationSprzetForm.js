@@ -20,21 +20,21 @@ function validateForm() {
     if (!checkRequired(sizeInput.value)) {
         valid = false;
         sizeInput.classList.add("error-input");
-        errorsizeName.innerText = "Rozmiar jest wymagany";
-    } else if (!checkTextLengthRange(sizeNameInput.value, 2, 40)) {
+        errorSize.innerText = "Rozmiar jest wymagany";
+    } else if (!checkShoeSize(sizeInput.value)) {
         valid = false;
-        sizeNameInput.classList.add("error-input");
-        errorsizeName.innerText = "Nazwisko powinno mieć od 2 do 40 znaków";
+        sizeInput.classList.add("error-input");
+        errorSize.innerText = "Rozmiar powien mieć dwie cyfry z możliwą połówką, np. 40 lub 40.5";
     }
 
-    if (!checkRequired(phoneNoInput.value)) {
+    if (!checkRequired(purposeInput.value)) {
         valid = false;
-        phoneNoInput.classList.add("error-input");
-        errorPhoneNo.innerText = "Numer telefonu jest wymagany";
-    } else if (!checkPhoneNo(phoneNoInput.value)) {
+        purposeInput.classList.add("error-input");
+        errorPurpose.innerText = "Przeznaczenie jest wymagane";
+    } else if (!checkTextLengthRange(purposeInput.value, 2, 20)) {
         valid = false;
-        phoneNoInput.classList.add("error-input");
-        errorPhoneNo.innerText = "Numer telefonu powienien składać się z dokładnie 9 cyfr";
+        purposeInput.classList.add("error-input");
+        errorPurpose.innerText = "Przeznaczenie powinno mieć od 2 do 20 znaków";
     }
 
     if (!valid) {

@@ -25,7 +25,7 @@
     </nav>
     <main>
         <h2>Nowy sprzęt</h2>
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
             <label for="type">Typ: <span class="symbol-required">*</span></label>
             <select name="type" id="type">
                 <option value="">-- Wybierz typ --</option>
@@ -33,15 +33,15 @@
                 <option value="2">Łyżwy</option>
                 <option value="3">Wrotki</option>
             </select>
-            <span id="errorType"></span>
+            <span id="errorType" class="errors-text"></span>
             <label for="size">Rozmiar: <span class="symbol-required">*</span></label>
             <input type="number" name="size" id="size" min="30" max="50" step="0.5" required>
-            <span id="errorSize"></span>
+            <span id="errorSize" class="errors-text"></span>
             <label for="purpose">Przeznaczenie: <span class="symbol-required">*</span></label>
             <input type="text" name="purpose" id="purpose" required>
-            <span id="errorPurpose"></span>
+            <span id="errorPurpose" class="errors-text"></span>
             <div class="form-buttons">
-                <p id="errorsSummary"></p>
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" value="Dodaj" class="form-button-submit">
                 <a href="list.html" class="form-button-cancel">Anuluj</a>
             </div>
