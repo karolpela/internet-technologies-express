@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Wypożyczalnia</title>
     <link rel="stylesheet" href="/style.css" type="text/css">
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationSprzetForm.js"></script>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
         <form class="form">
             <label for="type">Typ: <span class="symbol-required">*</span></label>
             <select name="type" id="type">
-                <option>-- Wybierz typ --</option>
+                <option value="">-- Wybierz typ --</option>
                 <option value="1">Rolki</option>
                 <option value="2">Łyżwy</option>
                 <option value="3">Wrotki</option>
