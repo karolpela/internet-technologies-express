@@ -1,0 +1,43 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły klienta</h2>
+        <form class="form">
+            <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+            <input type="text" name="firstName" id="firstName" value="Jan" W disabled>
+            <span id="errorFirstName" class="errors-text"></span>
+            <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+            <input type="text" name="lastName" id="lastName" value="Kowalski" disabled>
+            <span id="errorLastName" class="errors-text"></span>
+            <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
+            <input type="text" name="phoneNo" id="phoneNo" value="123456789" disabled>
+            <span id="errorPhoneNo" class="errors-text"></span>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <a href="/klienci/edit/1" class="form-button-edit">Edytuj</a>
+                <a href="/klienci" class="form-button-back">Powrót</a>
+            </div>
+        </form>
+
+        <h2>Szczegóły wypożyczeń</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Sprzęt</th>
+                    <th>Przeznaczenie</th>
+                    <th>Data od</th>
+                    <th>Data do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>Hokejowe</td>
+                    <td>2022-10-02</td>
+                    <td>2022-10-08</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

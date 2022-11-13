@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Wypożyczalnia</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1>Wypożyczalnia sprzętu sportowego</h1>
+        <img src="/images/logo.png" alt="Logo wypożyczalni">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
+            <li><a href="/klienci" class="<%= navLocation == 'klienci' ? 'active' : ''%>">Klienci</a>
+            </li>
+            <li><a href="/wypozyczenia" class="<%= navLocation == 'wypozyczenia' ? 'active' : ''%>">Wypożyczenia</a>
+            </li>
+            <li><a href="/sprzet" class="<%= navLocation == 'sprzet' ? 'active' : ''%>">Sprzęt</a></li>
+        </ul>
+    </nav>

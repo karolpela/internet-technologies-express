@@ -1,0 +1,66 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista klientów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Nr telefonu</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jan</td>
+                    <td>Kowalski</td>
+                    <td>jan.kowalski@gmail.com</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li><a href="/klienci/details/1" class="list-actions-button-details">
+                                    <span class="material-symbols-outlined">
+                                        info
+                                    </span>
+                                    Szczegóły</a></li>
+                            <li><a href="/klienci/edit/1" class="list-actions-button-edit">
+                                    <span class="material-symbols-outlined">
+                                        edit
+                                    </span>
+                                    Edytuj</a></li>
+                            <li><a href="/klienci" class="list-actions-button-delete">
+                                    <span class="material-symbols-outlined">
+                                        remove
+                                    </span>
+                                    Usuń</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Krzysztof</td>
+                    <td>Janowski</td>
+                    <td>krzysztof.janowski@gmail.com</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li><a href="/klienci/details/2" class="list-actions-button-details">
+                                    <span class="material-symbols-outlined">
+                                        info
+                                    </span>
+                                    Szczegóły</a></li>
+                            <li><a href="/klienci/edit/1" class="list-actions-button-edit">
+                                    <span class="material-symbols-outlined">
+                                        edit
+                                    </span>
+                                    Edytuj</a></li>
+                            <li><a href="/klienci" class="list-actions-button-delete">
+                                    <span class="material-symbols-outlined">
+                                        remove
+                                    </span>
+                                    Usuń</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a href="/klienci/add" class="button-add">Dodaj nowego klienta</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>
