@@ -6,8 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var klientRouter = require('./routes/klientRoute');
-var wypozyczenieRouter = require('./routes/wypozyczenieRoute');
 var sprzetRouter = require('./routes/sprzetRoute');
+var wypozyczenieRouter = require('./routes/wypozyczenieRoute');
+
+var klientApiRouter = require('./routes/api/KlientApiRoute');
+var sprzetApiRouter = require('./routes/api/SprzetApiRoute');
+var wypozyczenieApiRouter = require('./routes/api/WypozyczenieApiRoute');
+
+var sequelizeInit = require('./config/sequelize/init');
+sequelizeInit()
+  .catch(err => {
+    console.log(err);
+  });
 
 var app = express();
 
@@ -23,8 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/klienci', klientRouter);
-app.use('/wypozyczenia', wypozyczenieRouter);
 app.use('/sprzet', sprzetRouter);
+app.use('/wypozyczenia', wypozyczenieRouter);
+
+app.use('/api/klienci', klientApiRouter);
+app.use('/api/sprzet', sprzetApiRouter);
+app.use('/api/wypozyczenia', wypozyczenieApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -32,6 +46,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
+// eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
