@@ -5,13 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var klientRouter = require('./routes/klientRoute');
-var sprzetRouter = require('./routes/sprzetRoute');
-var wypozyczenieRouter = require('./routes/wypozyczenieRoute');
+var clientRouter = require('./routes/clientRoute');
+var equipmentRouter = require('./routes/equipmentRoute');
+var rentalRouter = require('./routes/rentalRoute');
 
-var klientApiRouter = require('./routes/api/KlientApiRoute');
-var sprzetApiRouter = require('./routes/api/SprzetApiRoute');
-var wypozyczenieApiRouter = require('./routes/api/WypozyczenieApiRoute');
+var clientApiRouter = require('./routes/api/clientApiRoute');
+var equipmentApiRouter = require('./routes/api/equipmentApiRoute');
+var rentalApiRouter = require('./routes/api/rentalApiRoute');
 
 var sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
@@ -32,13 +32,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/klienci', klientRouter);
-app.use('/sprzet', sprzetRouter);
-app.use('/wypozyczenia', wypozyczenieRouter);
+app.use('/clients', clientRouter);
+app.use('/equipment', equipmentRouter);
+app.use('/rentals', rentalRouter);
 
-app.use('/api/klienci', klientApiRouter);
-app.use('/api/sprzet', sprzetApiRouter);
-app.use('/api/wypozyczenia', wypozyczenieApiRouter);
+app.use('/api/clients', clientApiRouter);
+app.use('/api/equipment', equipmentApiRouter);
+app.use('/api/rentals', rentalApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

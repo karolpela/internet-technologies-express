@@ -1,0 +1,34 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Edycja wypożyczenia</h2>
+        <form class="form" novalidate onsubmit="return validateForm();">
+            <label for="client">Client: <span class="symbol-required">*</span></label>
+            <select name="client" id="client">
+                <option value="">-- Wybierz clienta --</option>
+                <option value="1" selected>1 - Jan Kowalski</option>
+                <option value="2">2 - Adam Nowak</option>
+                <option value="3">3 - Maciej Szewczyk</option>
+            </select>
+            <span id="errorClient" class="errors-text"></span>
+            <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
+            <select name="equipment" id="equipment">
+                <option value="">-- Wybierz sprzęt --</option>
+                <option value="1" selected>1 - Rolki figurowe 42</option>
+                <option value="2">2 - Łyżwy hokejowe 39</option>
+                <option value="3">3 - Wrotki disco 41</option>
+            </select>
+            <span id="errorEquipment" class="errors-text"></span>
+            <label for="startDate">Data od: <span class="symbol-required">*</span></label>
+            <input type="date" name="startDate" id="startDate" value="2022-10-02" required>
+            <span id="errorStartDate" class="errors-text"></span>
+            <label for="endDate">Data do:</label>
+            <input type="date" name="endDate" id="endDate" value="2022-10-08" required>
+            <span id="errorEndDate" class="errors-text"></span>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Edytuj" class="form-button-edit">
+                <a href="/rentals" class="form-button-back">Powrót</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

@@ -1,0 +1,34 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Nowe wypożyczenie</h2>
+        <form class="form">
+            <label for="client">Client: <span class="symbol-required">*</span></label>
+            <select name="client" id="client" class="error-input">
+                <option>-- Wybierz clienta --</option>
+                <option value="1">1 - Jan Kowalski</option>
+                <option value="2">2 - Adam Nowak</option>
+                <option value="3">3 - Maciej Szewczyk</option>
+            </select>
+            <span id="errorClient" class="errors-text">Client jest wymagany</span>
+            <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
+            <select name="equipment" id="equipment" class="error-input">
+                <option>-- Wybierz sprzęt --</option>
+                <option value="1">1 - Rolki figurowe 42</option>
+                <option value="2">2 - Łyżwy hokejowe 39</option>
+                <option value="3">3 - Wrotki disco 41</option>
+            </select>
+            <span id="errorEquipment" class="errors-text">Sprzęt jest wymagany</span>
+            <label for="startDate">Data od: <span class="symbol-required">*</span></label>
+            <input type="date" name="startDate" id="startDate" class="error-input" required>
+            <span id="errorStartDate" class="errors-text">Data od jest wymagana</span>
+            <label for="endDate">Data do: <span class="symbol-required">*</span></label>
+            <input type="date" name="endDate" id="endDate" class="error-input" required>
+            <span id="errorEndDate" class="errors-text">Data do jest wymagana</span>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text">Formularz zawiera błędy</p>
+                <input type="submit" value="Dodaj" class="form-button-submit">
+                <a href="/rentals" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

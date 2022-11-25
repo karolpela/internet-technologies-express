@@ -1,0 +1,33 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły wypożyczenia</h2>
+        <form class="form">
+            <label for="client">Client: <span class="symbol-required">*</span></label>
+            <select name="client" id="client" disabled>
+                <option>-- Wybierz clienta --</option>
+                <option value="1" selected>1 - Jan Kowalski</option>
+                <option value="2">2 - Adam Nowak</option>
+                <option value="3">3 - Maciej Szewczyk</option>
+            </select>
+            <span id="errorClient"></span>
+            <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
+            <select name="equipment" id="equipment" disabled>
+                <option>-- Wybierz sprzęt --</option>
+                <option value="1" selected>1 - Rolki figurowe 42</option>
+                <option value="2">2 - Łyżwy hokejowe 39</option>
+                <option value="3">3 - Wrotki disco 41</option>
+            </select>
+            <span id="errorEquipment"></span>
+            <label for="startDate">Data od: <span class="symbol-required">*</span></label>
+            <input type="date" name="startDate" id="startDate" value="2022-10-02" disabled>
+            <span id="errorStartDate"></span>
+            <label for="endDate">Data do: <span class="symbol-required">*</span></label>
+            <input type="date" name="endDate" id="endDate" value="2022-10-08" disabled>
+            <span id="errorEndDate"></span>
+            <div class="form-buttons">
+                <a href="/rentals/edit/1" class="form-button-edit">Edytuj</a>
+                <a href="/rentals" class="form-button-back">Powrót</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>
