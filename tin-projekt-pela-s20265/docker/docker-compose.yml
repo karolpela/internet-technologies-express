@@ -6,12 +6,13 @@ services:
       - "27017:27017"
     volumes:
       - mongodata:/data/db
-    restart: always
+    restart: unless-stopped
   mysql:
     image: mysql:latest
     container_name: dev_mysql
     ports:
       - "3306:3306"
+    restart: unless-stopped
     environment:
       MYSQL_USER: user
       MYSQL_PASSWORD: user
@@ -29,7 +30,7 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-    restart: always
+    restart: unless-stopped
     ports:
       - 8183:80
 volumes:
