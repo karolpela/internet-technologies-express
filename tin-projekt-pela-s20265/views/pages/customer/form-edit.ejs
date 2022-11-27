@@ -1,21 +1,20 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Nowy client</h2>
+        <h2>Edycja customera</h2>
         <form class="form" novalidate onsubmit="return validateForm();">
             <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-            <input type="text" name="firstName" id="firstName" placeholder="2-20 znaków" required>
+            <input type="text" name="firstName" id="firstName" value="Jan" required>
             <span id="errorFirstName" class="errors-text"></span>
             <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-            <input type="text" name="lastName" id="lastName" placeholder="2-40 znaków" required>
+            <input type="text" name="lastName" id="lastName" value="Kowalski" required>
             <span id="errorLastName" class="errors-text"></span>
             <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
-            <input type="number" name="phoneNo" id="phoneNo" min="100000000" max="999999999" placeholder="888123111"
-                required>
+            <input type="number" name="phoneNo" id="phoneNo" value="123456789" min="100000000" max="999999999" required>
             <span id="errorPhoneNo" class="errors-text"></span>
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
-                <input type="submit" value="Dodaj" class="form-button-submit">
-                <a href="/clients" class="form-button-cancel">Anuluj</a>
+                <input type="submit" value="Edytuj" class="form-button-edit">
+                <a href="/customers" class="form-button-back">Powrót</a>
             </div>
         </form>
     </main>

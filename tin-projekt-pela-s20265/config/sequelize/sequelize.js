@@ -5,9 +5,9 @@ const sequelize = new Sequelize('tin-pela-sequelize', 'root', 'root', {
     host: 'localhost',
 
     //prevent adding "s" to table names
-    define: {
-        freezeTableName: true
-    }
+    // define: {
+    //     freezeTableName: true
+    // }
 });
 
 module.exports = sequelize;

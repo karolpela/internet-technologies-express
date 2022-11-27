@@ -1,14 +1,14 @@
 <%- include('../../fragments/header.ejs') %>
     <h2>Nowe wypożyczenie</h2>
     <form class="form" novalidate onsubmit="return validateForm();">
-        <label for="client">Client: <span class="symbol-required">*</span></label>
-        <select name="client" id="client">
-            <option value="">-- Wybierz clienta --</option>
+        <label for="customer">Customer: <span class="symbol-required">*</span></label>
+        <select name="customer" id="customer">
+            <option value="">-- Wybierz customera --</option>
             <option value="1">1 - Jan Kowalski</option>
             <option value="2">2 - Adam Nowak</option>
             <option value="3">3 - Maciej Szewczyk</option>
         </select>
-        <span id="errorClient" class="errors-text"></span>
+        <span id="errorCustomer" class="errors-text"></span>
         <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
         <select name="equipment" id="equipment">
             <option value="">-- Wybierz sprzęt --</option>

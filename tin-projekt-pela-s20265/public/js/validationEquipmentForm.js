@@ -1,3 +1,5 @@
+/*global resetErrors,checkRequired,checkTextLengthRange, checkShoeSize*/
+
 function validateForm() {
     const typeInput = document.getElementById('type');
     const sizeInput = document.getElementById('size');

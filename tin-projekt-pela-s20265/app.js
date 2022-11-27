@@ -5,11 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var clientRouter = require('./routes/clientRoute');
+var customerRouter = require('./routes/customerRoute');
 var equipmentRouter = require('./routes/equipmentRoute');
 var rentalRouter = require('./routes/rentalRoute');
 
-var clientApiRouter = require('./routes/api/clientApiRoute');
+var customerApiRouter = require('./routes/api/customerApiRoute');
 var equipmentApiRouter = require('./routes/api/equipmentApiRoute');
 var rentalApiRouter = require('./routes/api/rentalApiRoute');
 
@@ -32,11 +32,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/clients', clientRouter);
+app.use('/customers', customerRouter);
 app.use('/equipment', equipmentRouter);
 app.use('/rentals', rentalRouter);
 
-app.use('/api/clients', clientApiRouter);
+app.use('/api/customers', customerApiRouter);
 app.use('/api/equipment', equipmentApiRouter);
 app.use('/api/rentals', rentalApiRouter);
 
@@ -46,7 +46,6 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-// eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

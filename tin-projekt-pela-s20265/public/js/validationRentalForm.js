@@ -1,3 +1,5 @@
+/*global resetErrors,checkRequired,checkTextLengthRange, checkDate, checkDateIfAfter*/
+
 function validateForm() {
     const clientInput = document.getElementById('client');
     const equipmentInput = document.getElementById('equipment');

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const Client = require('../../model/sequelize/client');
+const Customer = require('../../model/sequelize/customer');
 const Equipment = require('../../model/sequelize/equipment');
 const Rental = require('../../model/sequelize/rental');
 
@@ -8,8 +8,8 @@ exports.getRentals = () => {
     return Rental.findAll({
         include: [
             {
-                model: Client,
-                as: 'client'
+                model: Customer,
+                as: 'customer'
             },
             {
                 model: Equipment,
@@ -24,8 +24,8 @@ exports.getRentalById = (rentalId) => {
         {
             include: [
                 {
-                    model: Client,
-                    as: 'client'
+                    model: Customer,
+                    as: 'customer'
                 },
                 {
                     model: Equipment,
@@ -38,7 +38,7 @@ exports.getRentalById = (rentalId) => {
 exports.createRental = (data) => {
     console.log(JSON.stringify(data));
     return Rental.create({
-        id_client: data.id_client,
+        id_customer: data.id_customer,
         id_equipment: data.id_equipment,
         startDate: data.startDate,
         endDate: data.endDate

@@ -1,0 +1,44 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista klientów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Nr telefonu</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%for (let customer of customers){%>
+                    <tr>
+                        <td>
+                            <%=customer.firstName%>
+                        </td>
+                        <td>
+                            <%=customer.lastName%>
+                        </td>
+                        <td>
+                            <%=customer.phoneNo%>
+                        </td>
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/customers/details/<%=customer._id%>" class="list-actions-button-details">
+                                        <span class="material-symbols-outlined">info</span>
+                                        Szczegóły</a></li>
+                                <li><a href="/customers/edit/<%=customer._id%>" class="list-actions-button-edit">
+                                        <span class="material-symbols-outlined">edit</span>
+                                        Edytuj</a></li>
+                                <li><a href="/customers/delete/<%=customer._id%>" class="list-actions-button-delete">
+                                        <span class="material-symbols-outlined">remove</span>
+                                        Usuń</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+            </tbody>
+            <%}%>
+        </table>
+        <p><a href="/customers/add" class="button-add">Dodaj nowego customera</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

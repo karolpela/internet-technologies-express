@@ -207,8 +207,8 @@ textarea {
 
 .form {
     margin-left: 2rem;
-    display: grid;
-    grid-template-columns: 170px 300px 1fr;
+    /* display: grid;
+    grid-template-columns: 170px 300px 1fr; */
     gap: 1rem;
 }
 
@@ -242,18 +242,21 @@ textarea {
 }
 
 .form-button-submit,
-.form-button-cancel {
+.form-button-cancel,
+.form-button-back {
     width: 100%;
 }
 
 .form-button-cancel,
-.form-button-edit {
+.form-button-edit,
+.form-button-back {
     box-sizing: border-box;
     display: block;
 }
 
 .form-button-submit,
-.form-button-edit {
+.form-button-edit,
+.form-button-back {
     margin-bottom: 0.5rem;
 }
 

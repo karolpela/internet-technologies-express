@@ -1,0 +1,76 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <!-- <script type="application/javascript" src="/js/validationCommon.js"></script> -->
+        <script type="application/javascript" src="/js/validationCustomerForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+            <input type="hidden" name="_id" value="<%= customer._id%>">
+            <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+            <input type="text" name="firstName" id="firstName" placeholder="2-20 znaków"
+                value="<%= customer.firstName %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorFirstName" class="errors-text"></span>
+            <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+            <input type="text" name="lastName" id="lastName" placeholder="2-40 znaków" value="<%= customer.lastName %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorLastName" class="errors-text"></span>
+            <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
+            <input type="number" name="phoneNo" id="phoneNo" placeholder="123456789" value="<%= customer.phoneNo %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorPhoneNo" class="errors-text"></span>
+            <% if(formMode=='showDetails' ){ %>
+                <div class="section-buttons">
+                    <a href="/customers/edit/<%= customer._id %>" class="form-button-edit">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <% if(formMode=='showDetails' || formMode=='edit' ){ %>
+                        <h2>Szczegóły wypożyczeń</h2>
+                        <table class="table-list">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Sprzęt</th>
+                                    <th>Przeznaczenie</th>
+                                    <th>Data od</th>
+                                    <th>Data do</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let rental of customer.rentals){ %>
+                                    <tr>
+                                        <td>
+                                            <%= rental._id%>
+                                        </td>
+                                        <td>
+                                            <a href="/equipment/details/<%= rental.equipment._id %>">
+                                                <%= rental.id_equipment %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%= rental.equipment.purpose %>
+                                        </td>
+                                        <td>
+                                            <%= rental.startDate.toISOString().split('T')[0] %>
+                                        </td>
+                                        <td>
+                                            <%= rental.endDate ? rental.endDate.toISOString().split('T')[0] : '' %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                        <% } %>
+                            <div class="form-buttons">
+                                <p id="errorsSummary" class="errors-text"></p>
+                                <% if(formMode !='showDetails' ){ %>
+                                    <input type="submit" value="<%= btnLabel %>" class="form-button-submit">
+                                    <a href="/customers" class="form-button-cancel">Anuluj</a>
+                                    <% } else { %>
+                                        <a href="/customers" class="form-button-back">Powrót</a>
+                                        <% } %>
+                            </div>
+        </form>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>
