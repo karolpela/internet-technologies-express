@@ -213,10 +213,10 @@ textarea {
 }
 
 .form select,
-.form input[type="text"],
-.form input[type="number"],
-.form input[type="date"],
-.form input[type="email"] {
+.form input[type='text'],
+.form input[type='number'],
+.form input[type='date'],
+.form input[type='email'] {
     border: 1px solid #7f8c8d;
     color: #2c3e50;
     border-radius: 5px;
@@ -268,7 +268,7 @@ textarea {
 
 .form input.error-input,
 .form select.error-input {
-    border: 3px solid #e74c3c
+    border: 3px solid #e74c3c;
 }
 
 .errors-text {
@@ -287,11 +287,7 @@ textarea {
 
 @media all and (max-width: 720px) {
     .material-symbols-outlined {
-        font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
     }
 
     header {
@@ -355,7 +351,6 @@ textarea {
 }
 
 @media all and (max-width: 400px) {
-
     body,
     nav,
     nav ul,
@@ -369,9 +364,9 @@ textarea {
         flex-basis: 100%;
     }
 
-    table.table-list th:nth-child(2)~th,
-    table.table-list td:nth-child(2)~td {
-        display: none
+    table.table-list th:nth-child(2) ~ th,
+    table.table-list td:nth-child(2) ~ td {
+        display: none;
     }
 
     table.table-list th:last-child,

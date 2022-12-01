@@ -8,6 +8,10 @@ const Equipment = sequelize.define('Equipment', {
         allowNull: false,
         primaryKey: true
     },
+    type: {
+        type: Sequelize.STRING(12),
+        allowNull: false
+    },
     size: {
         type: Sequelize.DECIMAL(3, 1),
         allowNull: false

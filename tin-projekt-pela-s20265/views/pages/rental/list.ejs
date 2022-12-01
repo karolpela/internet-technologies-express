@@ -1,44 +1,61 @@
 <%- include('../../fragments/header.ejs') %>
-    <main>
-        <h2>Lista wypożyczeń</h2>
-        <table class="table-list rental-list">
-            <thead>
-                <tr>
-                    <th>Customer</th>
-                    <th>Sprzęt</th>
-                    <th>Data od</th>
-                    <th>Data do</th>
-                    <th>Akcje</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jan Kowalski</td>
-                    <td>Rolki figurowe 42</td>
-                    <td>2022-10-02</td>
-                    <td>2022-10-08</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li><a href="/rentals/details/1" class="list-actions-button-details">
-                                    <span class="material-symbols-outlined">
-                                        info
-                                    </span>
-                                    Szczegóły</a></li>
-                            <li><a href="/rentals/edit/1" class="list-actions-button-edit">
-                                    <span class="material-symbols-outlined">
-                                        edit
-                                    </span>
-                                    Edytuj</a></li>
-                            <li><a href="/rentals" class="list-actions-button-delete">
-                                    <span class="material-symbols-outlined">
-                                        remove
-                                    </span>
-                                    Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p><a href="/rentals/add" class="button-add">Dodaj nowe wypożyczenie</a></p>
-    </main>
-    <%- include('../../fragments/footer.ejs') %>
+<main>
+    <h2>Lista wypożyczeń</h2>
+    <table class="table-list rental-list">
+        <thead>
+            <tr>
+                <th>Klient</th>
+                <th>Sprzęt</th>
+                <th>Data wypożyczenia</th>
+                <th>Data zwrotu</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let rental of rentals) { %>
+            <tr>
+                <td><%= rental.customer.firstName + ' ' + rental.customer.lastName%></td>
+                <td>
+                    <%= rental.equipment.type + ' ' + rental.equipment.purpose + ' ' +
+                    rental.equipment.size %>
+                </td>
+                <td><%= rental.startDate.toISOString().split('T')[0] %></td>
+                <td><%= rental.endDate?.toISOString().split('T')[0] %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a
+                                href="/rentals/details/<%=rental._id%>"
+                                class="list-actions-button-details"
+                            >
+                                <span class="material-symbols-outlined"> info </span>
+                                Szczegóły</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="/rentals/edit/<%=rental._id%>"
+                                class="list-actions-button-edit"
+                            >
+                                <span class="material-symbols-outlined"> edit </span>
+                                Edytuj</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="/rentals/delete/<%=rental._id%>"
+                                class="list-actions-button-delete"
+                            >
+                                <span class="material-symbols-outlined"> remove </span>
+                                Usuń</a
+                            >
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <p><a href="/rentals/add" class="button-add">Dodaj nowe wypożyczenie</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

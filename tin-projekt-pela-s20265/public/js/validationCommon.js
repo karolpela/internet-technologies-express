@@ -1,11 +1,11 @@
 function resetErrors(inputs, errorTexts, errorInfo) {
     for (let i = 0; i < inputs.length; i++) {
-        inputs[i].classList.remove("error-input");
+        inputs[i].classList.remove('error-input');
     }
     for (let i = 0; i < errorTexts.length; i++) {
-        errorTexts[i].innerText = "";
+        errorTexts[i].innerText = '';
     }
-    errorInfo.innerText = "";
+    errorInfo.innerText = '';
 }
 
 function checkRequired(value) {
@@ -13,7 +13,7 @@ function checkRequired(value) {
         return false;
     }
     value = value.toString().trim();
-    if (value === "") {
+    if (value === '') {
         return false;
     }
     return true;
@@ -71,7 +71,8 @@ function checkNumberRange(value, min, max) {
     return true;
 }
 
-function checkDate(value) { // check if yyyy-MM-dd
+function checkDate(value) {
+    // check if yyyy-MM-dd
     if (!value) {
         return false;
     }
@@ -101,10 +102,11 @@ function checkDateIfAfter(value, compareTo) {
     return true;
 }
 
-function checkShoeSize(value) { // true for eg. 40 or 40.5
+function checkShoeSize(value) {
+    // true for eg. 40 or 40.5
     if (!value) {
         return false;
     }
-    const pattern = /^[1-9][0-9](\.5)?$/;
+    const pattern = /^[1-9][0-9]\.[05]$/;
     return pattern.test(value);
 }

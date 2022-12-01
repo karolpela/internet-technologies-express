@@ -1,33 +1,65 @@
 <%- include('../../fragments/header.ejs') %>
-    <h2>Nowe wypożyczenie</h2>
-    <form class="form" novalidate onsubmit="return validateForm();">
-        <label for="customer">Customer: <span class="symbol-required">*</span></label>
-        <select name="customer" id="customer">
-            <option value="">-- Wybierz customera --</option>
-            <option value="1">1 - Jan Kowalski</option>
-            <option value="2">2 - Adam Nowak</option>
-            <option value="3">3 - Maciej Szewczyk</option>
-        </select>
-        <span id="errorCustomer" class="errors-text"></span>
-        <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
-        <select name="equipment" id="equipment">
-            <option value="">-- Wybierz sprzęt --</option>
-            <option value="1">1 - Rolki figurowe 42</option>
-            <option value="2">2 - Łyżwy hokejowe 39</option>
-            <option value="3">3 - Wrotki disco 41</option>
-        </select>
-        <span id="errorEquipment" class="errors-text"></span>
-        <label for="startDate">Data wypożyczenia: <span class="symbol-required">*</span></label>
-        <input type="date" name="startDate" id="startDate" required>
-        <span id="errorStartDate" class="errors-text"></span>
-        <label for="endDate">Data zwrotu:</label>
-        <input type="date" name="endDate" id="endDate" required>
-        <span id="errorEndDate" class="errors-text"></span>
-        <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
-            <input type="submit" value="Dodaj" class="form-button-submit">
-            <a href="/rentals" class="form-button-cancel">Anuluj</a>
-        </div>
-    </form>
+    <main>
+        <script type="application/javascript" src="/js/validationCommon.js"></script>
+        <script type="application/javascript" src="/js/validationRentalForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+            <input type="hidden" name="_id" value="<%= rental._id%>">
+            <label for="customer">Klient: <span class="symbol-required">*</span></label>
+            <select name="customerId" id="customer" required <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %> >
+                <option value="">-- Wybierz klienta --</option>
+                <% for (let i=0; i < allCustomers.length; i++) { let customer=allCustomers[i] %>
+                    <option value="<%= customer._id %>" label="<%= customer.firstName %> <%= customer.lastName %>"
+                        <%=(customer._id.toString()==rental.customer?._id.toString()) ? 'selected' : '' %>>
+
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorCustomer" class="errors-text"></span>
+            <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
+            <select name="equipmentId" id="equipment" <%=(formMode=='showDetails' ) ? 'disabled' : ''
+                %> >
+                <option value="">-- Wybierz sprzęt --</option>
+                <% for (let i=0; i < allEquipment.length; i++) { let equipment=allEquipment[i] %>
+                    <option value="<%= equipment._id %>"
+                        label="<%= equipment.type %> <%= equipment.purpose %> <%= equipment.size %> %>"
+                        <%=(equipment._id.toString()==rental.equipment?._id.toString()) ? 'selected' : '' %>>
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorEquipment" class="errors-text"></span>
+            <label for="startDate">Data wypożyczenia: <span class="symbol-required">*</span></label>
+            <input type="date" name="startDate" id="startDate"
+                value="<%= rental.startDate?.toISOString().split('T')[0] %>" required <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>>
+            <span id="errorStartDate" class="errors-text"></span>
+            <label for="endDate">Data zwrotu:</label>
+            <% if (rental.endDate || formMode=='edit' || formMode=='createNew' ) { %>
+                <input type="date" name="endDate" id="endDate"
+                    value="<%= rental.endDate?.toISOString().split('T')[0] %>" <%=(formMode=='showDetails' )
+                    ? 'disabled' : '' %>>
+                <% } else { %>
+                    <input type="text" name="endDate" id="endDate" value="" <%=(formMode=='showDetails' ) ? 'disabled'
+                        : '' %>>
+                    <% } %>
+                        <span id="errorEndDate" class="errors-text"></span>
+                        <% if ( formMode=='showDetails' ){ %>
+                            <div class="section-buttons">
+                                <a href="/rentals/edit/<%= rental._id %>" class="form-button-edit">Edytuj</a>
+                            </div>
+                            <% } %>
+                                <div class="form-buttons">
+                                    <p id="errorsSummary" class="errors-text"></p>
+                                    <% if(formMode !='showDetails' ){ %>
+                                        <input type="submit" value="<%= btnLabel %>" class="form-button-submit">
+                                        <a href="/rentals" class="form-button-cancel">Anuluj</a>
+                                        <% } else { %>
+                                            <a href="/rentals" class="form-button-back">Powrót</a>
+                                            <% } %>
+                                </div>
+        </form>
     </main>
     <%- include('../../fragments/footer.ejs') %>

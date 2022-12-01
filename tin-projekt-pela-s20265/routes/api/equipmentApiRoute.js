@@ -3,7 +3,7 @@ const router = express.Router();
 
 const equipmentApiController = require('../../api/EquipmentApi');
 
-router.get('/', equipmentApiController.getEquipments);
+router.get('/', equipmentApiController.getEquipment);
 router.get('/:equipmentId', equipmentApiController.getEquipmentById);
 router.post('/', equipmentApiController.createEquipment);
 router.put('/:equipmentId', equipmentApiController.updateEquipment);

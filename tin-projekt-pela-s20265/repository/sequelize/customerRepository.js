@@ -4,29 +4,33 @@ const Rental = require('../../model/sequelize/rental');
 
 exports.getCustomers = () => {
     return Customer.findAll();
-}
+};
 
 exports.getCustomerById = (customerId) => {
-    return Customer.findByPk(customerId,
-        {
-            include: [{
+    return Customer.findByPk(customerId, {
+        include: [
+            {
                 model: Rental,
                 as: 'rentals',
-                include: [{
-                    model: Equipment,
-                    as: 'equipment'
-                }]
-            }]
-        });
+                include: [
+                    {
+                        model: Equipment,
+                        as: 'equipment'
+                    }
+                ]
+            }
+        ]
+    });
 };
 
 exports.createCustomer = (newCustomerData) => {
+    console.log(JSON.stringify(newCustomerData));
     return Customer.create({
         firstName: newCustomerData.firstName,
         lastName: newCustomerData.lastName,
-        phoneNo: newCustomerData.phoneNo,
-    })
-}
+        phoneNo: newCustomerData.phoneNo
+    });
+};
 
 exports.updateCustomer = (customerId, customerData) => {
     const firstName = customerData.firstName;
