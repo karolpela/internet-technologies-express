@@ -25,12 +25,14 @@ exports.getEquipmentById = (equipmentId) => {
 
 exports.createEquipment = (newEquipmentData) => {
     return Equipment.create({
+        type: newEquipmentData.type,
         size: newEquipmentData.size,
         purpose: newEquipmentData.purpose
     });
 };
 
 exports.updateEquipment = (equipmentId, equipmentData) => {
+    const type = equipmentData.type;
     const size = equipmentData.size;
     const purpose = equipmentData.purpose;
     return Equipment.update(equipmentData, { where: { _id: equipmentId } });

@@ -20,31 +20,31 @@ function validateForm() {
     if (!checkRequired(typeInput.value)) {
         valid = false;
         typeInput.classList.add('error-input');
-        errorType.innerText = 'Typ jest wymagany';
+        errorType.innerText = 'Pole jest wymagane';
     } else if (!checkTextLengthRange(purposeInput.value, 2, 12)) {
         valid = false;
         purposeInput.classList.add('error-input');
-        errorPurpose.innerText = 'Przeznaczenie powinno mieć od 2 do 12 znaków';
+        errorPurpose.innerText = 'Pole powinno zawierać od 2 do 12 znaków';
     }
 
     if (!checkRequired(sizeInput.value)) {
         valid = false;
         sizeInput.classList.add('error-input');
-        errorSize.innerText = 'Rozmiar jest wymagany';
+        errorSize.innerText = 'Pole jest wymagane';
     } else if (!checkShoeSize(sizeInput.value)) {
         valid = false;
         sizeInput.classList.add('error-input');
-        errorSize.innerText = 'Rozmiar powinien być w formacie np. 40.0 lub 40.5';
+        errorSize.innerText = 'Pole powinno być w formacie np. 40 lub 40.5';
     }
 
     if (!checkRequired(purposeInput.value)) {
         valid = false;
         purposeInput.classList.add('error-input');
-        errorPurpose.innerText = 'Przeznaczenie jest wymagane';
+        errorPurpose.innerText = 'Pole jest wymagane';
     } else if (!checkTextLengthRange(purposeInput.value, 2, 20)) {
         valid = false;
         purposeInput.classList.add('error-input');
-        errorPurpose.innerText = 'Przeznaczenie powinno mieć od 2 do 20 znaków';
+        errorPurpose.innerText = 'Pole powinno zawierać od 2 do 20 znaków';
     }
 
     if (!valid) {

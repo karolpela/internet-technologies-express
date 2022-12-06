@@ -107,6 +107,6 @@ function checkShoeSize(value) {
     if (!value) {
         return false;
     }
-    const pattern = /^[1-9][0-9]\.[05]$/;
+    const pattern = /^[1-9][0-9](\.[5])?$/;
     return pattern.test(value);
 }

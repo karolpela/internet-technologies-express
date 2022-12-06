@@ -13,7 +13,8 @@ exports.showAddCustomerForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj klienta',
         formAction: '/customers/add',
-        navLocation: 'customers'
+        navLocation: 'customers',
+        validationErrors: []
     });
 };
 
@@ -26,7 +27,8 @@ exports.showEditCustomerForm = (req, res, next) => {
             formMode: 'edit',
             btnLabel: 'Edytuj klienta',
             formAction: '/customers/edit',
-            navLocation: 'customers'
+            navLocation: 'customers',
+            validationErrors: []
         });
     });
 };
@@ -39,24 +41,51 @@ exports.showCustomerDetails = (req, res, next) => {
             pageTitle: 'Szczegóły klienta',
             formMode: 'showDetails',
             formAction: '',
-            navLocation: 'customers'
+            navLocation: 'customers',
+            validationErrors: []
         })
     );
 };
 
 exports.addCustomer = (req, res, next) => {
     const customerData = { ...req.body };
-    customerRepository.createCustomer(customerData).then((result) => {
-        res.redirect('/customers');
-    });
+    customerRepository
+        .createCustomer(customerData)
+        .then((result) => {
+            res.redirect('/customers');
+        })
+        .catch((err) => {
+            res.render('pages/customer/form', {
+                customer: customerData,
+                pageTitle: 'Nowy klient',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj klienta',
+                formAction: '/customers/add',
+                navLocation: 'customers',
+                validationErrors: err.errors
+            });
+        });
 };
 
 exports.updateCustomer = (req, res, next) => {
     const customerId = req.body._id;
     const customerData = { ...req.body };
-    customerRepository.updateCustomer(customerId, customerData).then((result) => {
-        res.redirect('/customers');
-    });
+    customerRepository
+        .updateCustomer(customerId, customerData)
+        .then((result) => {
+            res.redirect('/customers');
+        })
+        .catch((err) => {
+            res.render('pages/customer/form', {
+                customer: customerData,
+                pageTitle: 'Edycja klienta',
+                formMode: 'edit',
+                btnLabel: 'Edytuj klienta',
+                formAction: '/customers/edit',
+                navLocation: 'customers',
+                validationErrors: err.errors
+            });
+        });
 };
 
 exports.deleteCustomer = (req, res, next) => {

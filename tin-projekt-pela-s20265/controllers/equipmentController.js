@@ -13,7 +13,8 @@ exports.showAddEquipmentForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj sprzęt',
         formAction: '/equipment/add',
-        navLocation: 'equipment'
+        navLocation: 'equipment',
+        validationErrors: []
     });
 };
 
@@ -26,7 +27,8 @@ exports.showEditEquipmentForm = (req, res, next) => {
             formMode: 'edit',
             btnLabel: 'Edytuj sprzęt',
             formAction: '/equipment/edit',
-            navLocation: 'equipment'
+            navLocation: 'equipment',
+            validationErrors: []
         });
     });
 };
@@ -39,24 +41,51 @@ exports.showEquipmentDetails = (req, res, next) => {
             pageTitle: 'Szczegóły sprzętu',
             formMode: 'showDetails',
             formAction: '',
-            navLocation: 'equipment'
+            navLocation: 'equipment',
+            validationErrors: []
         })
     );
 };
 
 exports.addEquipment = (req, res, next) => {
     const equipmentData = { ...req.body };
-    equipmentRepository.createEquipment(equipmentData).then((result) => {
-        res.redirect('/equipment');
-    });
+    equipmentRepository
+        .createEquipment(equipmentData)
+        .then((result) => {
+            res.redirect('/equipment');
+        })
+        .catch((err) => {
+            res.render('pages/equipment/form', {
+                equipment: equipmentData,
+                pageTitle: 'Nowy sprzęt',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj sprzęt',
+                formAction: '/equipment/add',
+                navLocation: 'equipment',
+                validationErrors: err.errors
+            });
+        });
 };
 
 exports.updateEquipment = (req, res, next) => {
     const equipmentId = req.body._id;
     const equipmentData = { ...req.body };
-    equipmentRepository.updateEquipment(equipmentId, equipmentData).then((result) => {
-        res.redirect('/equipment');
-    });
+    equipmentRepository
+        .updateEquipment(equipmentId, equipmentData)
+        .then((result) => {
+            res.redirect('/equipment');
+        })
+        .catch((err) => {
+            res.render('pages/equipment/form', {
+                equipment: equipmentData,
+                pageTitle: 'Edycja sprzętu',
+                formMode: 'edit',
+                btnLabel: 'Edytuj sprzęt',
+                formAction: '/equipment/edit',
+                navLocation: 'equipment',
+                validationErrors: err.errors
+            });
+        });
 };
 
 exports.deleteEquipment = (req, res, next) => {

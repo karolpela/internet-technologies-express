@@ -8,7 +8,7 @@
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
             <input type="hidden" name="_id" value="<%= rental._id%>">
             <label for="customer">Klient: <span class="symbol-required">*</span></label>
-            <select name="customerId" id="customer" required <%=(formMode=='showDetails' )
+            <select name="customerId" id="customer"  class="<%= validationErrors.find(e => e.path.includes('customer')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' )
                 ? 'disabled' : '' %> >
                 <option value="">-- Wybierz klienta --</option>
                 <% for (let i=0; i < allCustomers.length; i++) { let customer=allCustomers[i] %>
@@ -18,9 +18,12 @@
                     </option>
                     <% } %>
             </select>
-            <span id="errorCustomer" class="errors-text"></span>
+            <span id="errorCustomer" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('customer'))) { %> <%=
+                    validationErrors.find(e => e.path.includes('customer')).message %> <% } %>
+            </span>
             <label for="equipment">Sprzęt: <span class="symbol-required">*</span></label>
-            <select name="equipmentId" id="equipment" <%=(formMode=='showDetails' ) ? 'disabled' : ''
+            <select name="equipmentId" id="equipment" class="<%= validationErrors.find(e => e.path.includes('equipment')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : ''
                 %> >
                 <option value="">-- Wybierz sprzęt --</option>
                 <% for (let i=0; i < allEquipment.length; i++) { let equipment=allEquipment[i] %>
@@ -30,22 +33,31 @@
                     </option>
                     <% } %>
             </select>
-            <span id="errorEquipment" class="errors-text"></span>
+            <span id="errorEquipment" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('equipment'))) { %> <%=
+                    validationErrors.find(e => e.path.includes('equipment')).message %> <% } %>
+            </span>
             <label for="startDate">Data wypożyczenia: <span class="symbol-required">*</span></label>
             <input type="date" name="startDate" id="startDate"
-                value="<%= rental.startDate?.toISOString().split('T')[0] %>" required <%=(formMode=='showDetails' )
+                value="<%= rental.startDate?.toISOString().split('T')[0] %>" class="<%= validationErrors.find(e => e.path.includes('startDate')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' )
                 ? 'disabled' : '' %>>
-            <span id="errorStartDate" class="errors-text"></span>
+            <span id="errorStartDate" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('startDate'))) { %> <%=
+                    validationErrors.find(e => e.path.includes('startDate')).message %> <% } %>
+            </span>
             <label for="endDate">Data zwrotu:</label>
             <% if (rental.endDate || formMode=='edit' || formMode=='createNew' ) { %>
                 <input type="date" name="endDate" id="endDate"
                     value="<%= rental.endDate?.toISOString().split('T')[0] %>" <%=(formMode=='showDetails' )
                     ? 'disabled' : '' %>>
                 <% } else { %>
-                    <input type="text" name="endDate" id="endDate" value="" <%=(formMode=='showDetails' ) ? 'disabled'
+                    <input type="text" name="endDate" id="endDate" value="" class="<%= validationErrors.find(e => e.path.includes('endDate')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled'
                         : '' %>>
                     <% } %>
-                        <span id="errorEndDate" class="errors-text"></span>
+                        <span id="errorEndDate" class="errors-text">
+                            <% if (validationErrors.find(e => e.path.includes('endDate'))) { %> <%=
+                                validationErrors.find(e => e.path.includes('endDate')).message %> <% } %>
+                        </span>
                         <% if ( formMode=='showDetails' ){ %>
                             <div class="section-buttons">
                                 <a href="/rentals/edit/<%= rental._id %>" class="form-button-edit">Edytuj</a>

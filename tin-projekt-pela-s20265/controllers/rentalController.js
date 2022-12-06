@@ -25,7 +25,8 @@ exports.showAddRentalForm = (req, res, next) => {
                 pageTitle: 'Nowe wypożyczenie',
                 btnLabel: 'Dodaj wypożyczenie',
                 formAction: '/rentals/add',
-                navLocation: 'rentals'
+                navLocation: 'rentals',
+                validationErrors: []
             });
         });
 };
@@ -52,7 +53,8 @@ exports.showEditRentalForm = (req, res, next) => {
                 formMode: 'edit',
                 btnLabel: 'Edytuj wypożyczenie',
                 formAction: '/rentals/edit',
-                navLocation: 'rentals'
+                navLocation: 'rentals',
+                validationErrors: []
             });
         });
 };
@@ -78,24 +80,75 @@ exports.showRentalDetails = (req, res, next) => {
                 pageTitle: 'Szczegóły wypożyczenia',
                 formMode: 'showDetails',
                 formAction: '',
-                navLocation: 'rentals'
+                navLocation: 'rentals',
+                validationErrors: []
             });
         });
 };
 
 exports.addRental = (req, res, next) => {
     const rentalData = { ...req.body };
-    RentalRepository.createRental(rentalData).then((result) => {
-        res.redirect('/rentals');
-    });
+    RentalRepository.createRental(rentalData)
+        .then((result) => {
+            res.redirect('/rentals');
+        })
+        .catch((err) => {
+            let allCustomers, allEquipment;
+            CustomerRepository.getCustomers()
+                .then((customers) => {
+                    allCustomers = customers;
+                    return EquipmentRepository.getEquipment();
+                })
+                .then((equipment) => {
+                    allEquipment = equipment;
+                    res.render('pages/rental/form', {
+                        rental: { rentalData },
+                        formMode: 'createNew',
+                        allCustomers: allCustomers,
+                        allEquipment: allEquipment,
+                        pageTitle: 'Nowe wypożyczenie',
+                        btnLabel: 'Dodaj wypożyczenie',
+                        formAction: '/rentals/add',
+                        navLocation: 'rentals',
+                        validationErrors: err.errors
+                    });
+                });
+        });
 };
 
 exports.updateRental = (req, res, next) => {
     const rentalId = req.body._id;
     const rentalData = { ...req.body };
-    RentalRepository.updateRental(rentalId, rentalData).then((result) => {
-        res.redirect('/rentals');
-    });
+    RentalRepository.updateRental(rentalId, rentalData)
+        .then((result) => {
+            res.redirect('/rentals');
+        })
+        .catch((err) => {
+            let allCustomers, allEquipment;
+
+            CustomerRepository.getCustomers()
+                .then((customers) => {
+                    allCustomers = customers;
+                    return EquipmentRepository.getEquipment();
+                })
+                .then((equipment) => {
+                    allEquipment = equipment;
+                    return RentalRepository.getRentalById(rentalId);
+                })
+                .then((rental) => {
+                    res.render('pages/rental/form', {
+                        rental: rentalData,
+                        allCustomers: allCustomers,
+                        allEquipment: allEquipment,
+                        pageTitle: 'Edycja wypożyczenia',
+                        formMode: 'edit',
+                        btnLabel: 'Edytuj wypożyczenie',
+                        formAction: '/rentals/edit',
+                        navLocation: 'rentals',
+                        validationErrors: err.errors
+                    });
+                });
+        });
 };
 
 exports.deleteRental = (req, res, next) => {

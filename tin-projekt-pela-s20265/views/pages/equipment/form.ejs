@@ -13,16 +13,28 @@
         <input type="hidden" name="_id" value="<%= equipment._id%>" />
         <label for="type">Typ: <span class="symbol-required">*</span></label>
         <input type="text" name="type" id="type" placeholder="2-12 znaków" value="<%= equipment.type
-        %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-        <span id="errorType" class="errors-text"></span>
+        %>" class="<%= validationErrors.find(e => e.path.includes('type')) ? 'error-input' : '' %>"
+        <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+        <span id="errorType" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('type'))) { %> <%=
+            validationErrors.find(e => e.path.includes('type')).message %> <% } %>
+        </span>
         <label for="size">Rozmiar: <span class="symbol-required">*</span></label>
         <input type="number" name="size" id="size" placeholder="40.5" value="<%= equipment.size %>"
+        class="<%= validationErrors.find(e => e.path.includes('size')) ? 'error-input' : '' %>"
         <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-        <span id="errorSize" class="errors-text"></span>
+        <span id="errorSize" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('size'))) { %> <%=
+            validationErrors.find(e => e.path.includes('size')).message %> <% } %>
+        </span>
         <label for="purpose">Przeznaczenie: <span class="symbol-required">*</span></label>
         <input type="text" name="purpose" id="purpose" placeholder="2-20 znaków" value="<%=
-        equipment.purpose %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-        <span id="errorPurpose" class="errors-text"></span>
+        equipment.purpose %>" class="<%= validationErrors.find(e => e.path.includes('purpose')) ?
+        'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+        <span id="errorPurpose" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('purpose'))) { %> <%=
+            validationErrors.find(e => e.path.includes('purpose')).message %> <% } %>
+        </span>
         <% if(formMode=='showDetails' ){ %>
         <div class="section-buttons">
             <a href="/equipment/edit/<%= equipment._id %>" class="form-button-edit">Edytuj</a>

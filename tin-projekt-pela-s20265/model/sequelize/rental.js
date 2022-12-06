@@ -10,19 +10,55 @@ const Rental = sequelize.define('Rental', {
     },
     customerId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Pole jest wymagane'
+            },
+            isInt: {
+                args: true,
+                msg: 'Pole powinno zawierać liczbę całkowitą'
+            }
+        }
     },
     equipmentId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Pole jest wymagane'
+            },
+            isInt: {
+                args: true,
+                msg: 'Pole powinno zawierać liczbę całkowitą'
+            }
+        }
     },
     startDate: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Pole jest wymagane'
+            },
+            isDate: {
+                args: true,
+                msg: 'Pole powinno zawierać datę'
+            }
+        }
     },
     endDate: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
+        validate: {
+            notEmpty: {
+                msg: 'Pole jest wymagane'
+            },
+            isDate: {
+                args: true,
+                msg: 'Pole powinno zawierać datę'
+            }
+        }
     }
 });
 
