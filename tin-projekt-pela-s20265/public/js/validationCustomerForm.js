@@ -9,6 +9,8 @@ function validateForm() {
     const errorPhoneNo = document.getElementById('errorPhoneNo');
     const errorsSummary = document.getElementById('errorsSummary');
 
+    const requiredMessage = document.getElementById('errorMessage-required').innerText;
+
     resetErrors(
         [firstNameInput, lastNameInput, phoneNoInput],
         [errorFirstName, errorLastName, errorPhoneNo],
@@ -20,7 +22,7 @@ function validateForm() {
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add('error-input');
-        errorFirstName.innerText = 'Pole jest wymagane';
+        errorFirstName.innerText = requiredMessage;
     } else if (!checkTextLengthRange(firstNameInput.value, 2, 20)) {
         valid = false;
         firstNameInput.classList.add('error-input');
@@ -30,7 +32,7 @@ function validateForm() {
     if (!checkRequired(lastNameInput.value)) {
         valid = false;
         lastNameInput.classList.add('error-input');
-        errorLastName.innerText = 'Pole jest wymagane';
+        errorLastName.innerText = requiredMessage;
     } else if (!checkTextLengthRange(lastNameInput.value, 2, 40)) {
         valid = false;
         lastNameInput.classList.add('error-input');
@@ -40,7 +42,7 @@ function validateForm() {
     if (!checkRequired(phoneNoInput.value)) {
         valid = false;
         phoneNoInput.classList.add('error-input');
-        errorPhoneNo.innerText = 'Pole jest wymagane';
+        errorPhoneNo.innerText = requiredMessage;
     } else if (!checkPhoneNo(phoneNoInput.value)) {
         valid = false;
         phoneNoInput.classList.add('error-input');

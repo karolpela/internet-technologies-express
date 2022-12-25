@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Wypożyczalnia</title>
+        <title><%= __('title') %></title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -13,29 +13,29 @@
 
     <body>
         <header>
-            <h1>Wypożyczalnia sprzętu sportowego</h1>
+            <h1><%= __('title') %></h1>
             <% if(!loggedUser) { %>
             <div id="login">
-                <h5>Logowanie</h5>
+                <h5><%= __('nav.logging') %></h5>
                 <form method="post" action="/login" novalidate>
                     <span>
-                        <label for="loginPhoneNo">Nr telefonu:</label>
+                        <label for="loginPhoneNo"><%= __('customer.fields.phoneNo') %>:</label>
                         <input type="text" id="loginPhoneNo" name="phoneNo" size="9" />
                     </span>
                     <br />
                     <span>
-                        <label for="loginPassword">Hasło:</label>
+                        <label for="loginPassword"><%= __('customer.fields.password') %>:</label>
                         <input type="password" id="loginPassword" name="password" size="9" />
                     </span>
-                    <input type="submit" value="Zaloguj się" />
+                    <input type="submit" value="<%= __('nav.logIn') %>" />
                     <span id="loginErrors"><%= loginError ?? '' %></span>
                 </form>
             </div>
             <% } else { %>
             <span
-                >Jesteś zalogowany jako: <%= loggedUser.firstName + ' ' + loggedUser.lastName %>
+                ><%= __('nav.loggedAs') %>: <%= loggedUser.firstName + ' ' + loggedUser.lastName %>
             </span>
-            <a href="/logout">Wyloguj się</a>
+            <a href="/logout"><%= __('nav.logOut') %></a>
             <% } %>
             <img src="/images/logo.png" alt="Logo wypożyczalni" />
         </header>
@@ -43,26 +43,30 @@
             <ul>
                 <li>
                     <a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"
-                        >Strona główna</a
+                        ><%= __('nav.main-page') %></a
                     >
                 </li>
                 <li>
                     <a href="/customers" class="<%= navLocation == 'customers' ? 'active' : ''%>"
-                        >Klienci</a
+                        ><%= __('nav.customers') %></a
                     >
                 </li>
                 <% if(loggedUser) { %>
                 <li>
                     <a href="/rentals" class="<%= navLocation == 'rentals' ? 'active' : ''%>"
-                        >Wypożyczenia</a
+                        ><%= __('nav.rentals') %></a
                     >
                 </li>
                 <% } %>
                 <li>
                     <a href="/equipment" class="<%= navLocation == 'equipment' ? 'active' : ''%>"
-                        >Sprzęt</a
+                        ><%= __('nav.equipment') %></a
                     >
                 </li>
+            </ul>
+            <ul>
+                <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+                <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
             </ul>
         </nav>
     </body>

@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Lista sprzętu</h2>
+    <h2><%= __('equipment.list.title') %></h2>
     <table class="table-list">
         <thead>
             <tr>
-                <th>Typ</th>
-                <th>Rozmiar</th>
-                <th>Przeznaczenie</th>
-                <th>Akcje</th>
+                <th><%= __('equipment.fields.type') %></th>
+                <th><%= __('equipment.fields.size') %></th>
+                <th><%= __('equipment.fields.purpose') %></th>
+                <th><%= __('list.actions.title') %></th>
             </tr>
         </thead>
         <tbody>
@@ -24,13 +24,13 @@
                                 class="list-actions-button-details"
                             >
                                 <span class="material-symbols-outlined">info</span>
-                                Szczegóły</a
+                                <%= __('list.actions.details') %></a
                             >
                         </li>
                         <li>
                             <a href="/equipment/edit/<%=eq._id%>" class="list-actions-button-edit">
                                 <span class="material-symbols-outlined">edit</span>
-                                Edytuj</a
+                                <%= __('list.actions.edit') %></a
                             >
                         </li>
                         <li>
@@ -39,7 +39,7 @@
                                 class="list-actions-button-delete"
                             >
                                 <span class="material-symbols-outlined">remove</span>
-                                Usuń</a
+                                <%= __('list.actions.delete') %></a
                             >
                         </li>
                     </ul>
@@ -48,6 +48,6 @@
         </tbody>
         <% } %>
     </table>
-    <p><a href="/equipment/add" class="button-add">Dodaj nowy sprzęt</a></p>
+    <p><a href="/equipment/add" class="button-add"><%= __('equipment.list.addNew') %></a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Lista klientów</h2>
+    <h2><%= __('customer.list.title') %></h2>
     <table class="table-list">
         <thead>
             <tr>
-                <th>Imię</th>
-                <th>Nazwisko</th>
-                <th>Nr telefonu</th>
-                <th>Akcje</th>
+                <th><%= __('customer.fields.firstName') %></th>
+                <th><%= __('customer.fields.lastName') %></th>
+                <th><%= __('customer.fields.phoneNo') %></th>
+                <th><%= __('list.actions.title') %></th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
                                 class="list-actions-button-details"
                             >
                                 <span class="material-symbols-outlined">info</span>
-                                Szczegóły</a
+                                <%= __('list.actions.details') %></a
                             >
                         </li>
                         <li>
@@ -33,7 +33,7 @@
                                 class="list-actions-button-edit"
                             >
                                 <span class="material-symbols-outlined">edit</span>
-                                Edytuj</a
+                                <%= __('list.actions.edit') %></a
                             >
                         </li>
                         <li>
@@ -42,7 +42,7 @@
                                 class="list-actions-button-delete"
                             >
                                 <span class="material-symbols-outlined">remove</span>
-                                Usuń</a
+                                <%= __('list.actions.delete') %></a
                             >
                         </li>
                     </ul>
@@ -51,6 +51,6 @@
         </tbody>
         <% } %>
     </table>
-    <p><a href="/customers/add" class="button-add">Dodaj nowego klienta</a></p>
+    <p><a href="/customers/add" class="button-add"><%= __('customer.form.add.btnLabel') %></a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

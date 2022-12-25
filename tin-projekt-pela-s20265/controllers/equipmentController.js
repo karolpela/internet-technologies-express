@@ -9,9 +9,9 @@ exports.showEquipmentList = (req, res, next) => {
 exports.showAddEquipmentForm = (req, res, next) => {
     res.render('pages/equipment/form', {
         equipment: {},
-        pageTitle: 'Nowy sprzęt',
+        pageTitle: req.__('equipment.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj sprzęt',
+        btnLabel: req.__('equipment.form.add.btnLabel'),
         formAction: '/equipment/add',
         navLocation: 'equipment',
         validationErrors: []
@@ -23,9 +23,9 @@ exports.showEditEquipmentForm = (req, res, next) => {
     equipmentRepository.getEquipmentById(equipmentId).then((equipment) => {
         res.render('pages/equipment/form', {
             equipment: equipment,
-            pageTitle: 'Edycja sprzętu',
+            pageTitle: req.__('equipment.form.edit.pageTitle'),
             formMode: 'edit',
-            btnLabel: 'Edytuj sprzęt',
+            btnLabel: req.__('equipment.form.edit.btnLabel'),
             formAction: '/equipment/edit',
             navLocation: 'equipment',
             validationErrors: []
@@ -38,7 +38,7 @@ exports.showEquipmentDetails = (req, res, next) => {
     equipmentRepository.getEquipmentById(equipmentId).then((equipment) =>
         res.render('pages/equipment/form', {
             equipment: equipment,
-            pageTitle: 'Szczegóły sprzętu',
+            pageTitle: req.__('equipment.form.details.pageTitle'),
             formMode: 'showDetails',
             formAction: '',
             navLocation: 'equipment',
@@ -57,9 +57,9 @@ exports.addEquipment = (req, res, next) => {
         .catch((err) => {
             res.render('pages/equipment/form', {
                 equipment: equipmentData,
-                pageTitle: 'Nowy sprzęt',
+                pageTitle: req.__('equipment.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj sprzęt',
+                btnLabel: req.__('equipment.form.add.btnLabel'),
                 formAction: '/equipment/add',
                 navLocation: 'equipment',
                 validationErrors: err.errors
@@ -78,9 +78,9 @@ exports.updateEquipment = (req, res, next) => {
         .catch((err) => {
             res.render('pages/equipment/form', {
                 equipment: equipmentData,
-                pageTitle: 'Edycja sprzętu',
+                pageTitle: req.__('equipment.form.edit.pageTitle'),
                 formMode: 'edit',
-                btnLabel: 'Edytuj sprzęt',
+                btnLabel: req.__('equipment.form.edit.btnLabel'),
                 formAction: '/equipment/edit',
                 navLocation: 'equipment',
                 validationErrors: err.errors

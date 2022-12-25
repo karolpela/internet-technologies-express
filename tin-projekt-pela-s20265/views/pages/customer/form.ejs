@@ -11,7 +11,10 @@
         onsubmit="return validateForm();"
     >
         <input type="hidden" name="_id" value="<%= customer._id%>" />
-        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+        <label for="firstName">
+            <%= __('customer.fields.firstName')%>:
+            <span class="symbol-required">*</span></label
+        >
         <input type="text" name="firstName" id="firstName" placeholder="2-20 znaków" value="<%=
         customer.firstName %>" class="<%= validationErrors.find(e => e.path.includes('firstName')) ?
         'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
@@ -19,7 +22,9 @@
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %> <%=
             validationErrors.find(e => e.path.includes('firstName')).message %> <% } %>
         </span>
-        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+        <label for="lastName">
+            <%= __('customer.fields.lastName')%>: <span class="symbol-required">*</span></label
+        >
         <input type="text" name="lastName" id="lastName" placeholder="2-40 znaków" value="<%=
         customer.lastName %>" class="<%= validationErrors.find(e => e.path.includes('lastName')) ?
         'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
@@ -27,7 +32,9 @@
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %> <%=
             validationErrors.find(e => e.path.includes('lastName')).message %> <% } %>
         </span>
-        <label for="phoneNo">Nr telefonu: <span class="symbol-required">*</span></label>
+        <label for="phoneNo">
+            <%= __('customer.fields.phoneNo')%>: <span class="symbol-required">*</span></label
+        >
         <input type="text" name="phoneNo" id="phoneNo" placeholder="123456789" value="<%=
         customer.phoneNo %>" class="<%= validationErrors.find(e => e.path.includes('phoneNo')) ?
         'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
@@ -37,7 +44,9 @@
         </span>
 
         <% if(formMode=='createNew' || formMode=='edit') { %>
-        <label for="password">Hasło: <span class="symbol-required">*</span></label>
+        <label for="password">
+            <%= __('customer.fields.password')%>: <span class="symbol-required">*</span></label
+        >
         <input
             type="text"
             name="password"
@@ -52,18 +61,26 @@
         </span>
         <% } %> <% if(formMode=='showDetails' ){ %>
         <div class="section-buttons">
-            <a href="/customers/edit/<%= customer._id %>" class="form-button-edit">Edytuj</a>
+            <a href="/customers/edit/<%= customer._id %>" class="form-button-edit"
+                ><%= __('form.actions.edit')%></a
+            >
         </div>
+
+        <!-- hidden interantionalized error message -->
+        <div style="display: none">
+            <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        </div>
+
         <% } %> <% if(formMode=='showDetails' || formMode=='edit' ){ %>
-        <h2>Szczegóły wypożyczeń</h2>
+        <h2><%= __('customer.form.rentals') + ':'%></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Sprzęt</th>
-                    <th>Rozmiar</th>
-                    <th>Data od</th>
-                    <th>Data do</th>
+                    <th><%= __('id') %></th>
+                    <th><%= __('rentals.fields.equipment') %></th>
+                    <th><%= __('equipment.fields.size') %></th>
+                    <th><%= __('rentals.fields.startDate') %></th>
+                    <th><%= __('rentals.fields.endDate') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -87,9 +104,9 @@
             <p id="errorsSummary" class="errors-text"></p>
             <% if(formMode !='showDetails' ){ %>
             <input type="submit" value="<%= btnLabel %>" class="form-button-submit" />
-            <a href="/customers" class="form-button-cancel">Anuluj</a>
+            <a href="/customers" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-            <a href="/customers" class="form-button-back">Powrót</a>
+            <a href="/customers" class="form-button-back"><%= __('form.actions.return') %></a>
             <% } %>
         </div>
     </form>

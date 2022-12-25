@@ -47,8 +47,28 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('secret'));
+
+var i18n = require('i18n');
+i18n.configure({
+    locales: ['pl', 'en'],
+    directory: path.join(__dirname, 'locales'),
+    objectNotation: true,
+    defaultLocale: 'pl',
+    cookie: 'rental-shop-lang'
+});
+app.use(i18n.init);
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+// set language from cookie
+app.use((req, res, next) => {
+    if (!res.locals.lang) {
+        const currentLang = req.cookies['rental-shop-lang'];
+        res.locals.lang = currentLang;
+    }
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/customers', customerRouter);

@@ -11,7 +11,9 @@
         onsubmit="return validateForm();"
     >
         <input type="hidden" name="_id" value="<%= equipment._id%>" />
-        <label for="type">Typ: <span class="symbol-required">*</span></label>
+        <label for="type"
+            ><%= __('equipment.fields.type') %>: <span class="symbol-required">*</span></label
+        >
         <input type="text" name="type" id="type" placeholder="2-12 znaków" value="<%= equipment.type
         %>" class="<%= validationErrors.find(e => e.path.includes('type')) ? 'error-input' : '' %>"
         <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
@@ -19,7 +21,9 @@
             <% if (validationErrors.find(e => e.path.includes('type'))) { %> <%=
             validationErrors.find(e => e.path.includes('type')).message %> <% } %>
         </span>
-        <label for="size">Rozmiar: <span class="symbol-required">*</span></label>
+        <label for="size">
+            <%= __('equipment.fields.size') %>: <span class="symbol-required">*</span></label
+        >
         <input type="number" name="size" id="size" placeholder="40.5" value="<%= equipment.size %>"
         class="<%= validationErrors.find(e => e.path.includes('size')) ? 'error-input' : '' %>"
         <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
@@ -27,7 +31,9 @@
             <% if (validationErrors.find(e => e.path.includes('size'))) { %> <%=
             validationErrors.find(e => e.path.includes('size')).message %> <% } %>
         </span>
-        <label for="purpose">Przeznaczenie: <span class="symbol-required">*</span></label>
+        <label for="purpose">
+            <%= __('equipment.fields.purpose') %>: <span class="symbol-required">*</span></label
+        >
         <input type="text" name="purpose" id="purpose" placeholder="2-20 znaków" value="<%=
         equipment.purpose %>" class="<%= validationErrors.find(e => e.path.includes('purpose')) ?
         'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
@@ -37,17 +43,25 @@
         </span>
         <% if(formMode=='showDetails' ){ %>
         <div class="section-buttons">
-            <a href="/equipment/edit/<%= equipment._id %>" class="form-button-edit">Edytuj</a>
+            <a href="/equipment/edit/<%= equipment._id %>" class="form-button-edit"
+                ><%= __('form.actions.edit') %></a
+            >
         </div>
+
+        <!-- hidden interantionalized error message -->
+        <div style="display: none">
+            <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        </div>
+
         <% } %> <% if(formMode=='showDetails' || formMode=='edit' ){ %>
-        <h2>Szczegóły wypożyczeń</h2>
+        <h2><%= __('equipment.form.rentals') %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Klient</th>
-                    <th>Data od</th>
-                    <th>Data do</th>
+                    <th><%= __('id') %></th>
+                    <th><%= __('rentals.fields.customer') %></th>
+                    <th><%= __('rentals.fields.startDate') %></th>
+                    <th><%= __('rentals.fields.endDate') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -71,9 +85,9 @@
             <p id="errorsSummary" class="errors-text"></p>
             <% if(formMode !='showDetails' ){ %>
             <input type="submit" value="<%= btnLabel %>" class="form-button-submit" />
-            <a href="/equipment" class="form-button-cancel">Anuluj</a>
+            <a href="/equipment" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-            <a href="/equipment" class="form-button-back">Powrót</a>
+            <a href="/equipment" class="form-button-back"><%= __('form.actions.return') %></a>
             <% } %>
         </div>
     </form>
