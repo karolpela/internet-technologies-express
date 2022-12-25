@@ -1,4 +1,5 @@
 const customerRepository = require('../repository/sequelize/customerRepository');
+const authUtil = require('../util/authUtil');
 
 exports.showCustomerList = (req, res, next) => {
     customerRepository.getCustomers().then((customers) => {
@@ -49,6 +50,7 @@ exports.showCustomerDetails = (req, res, next) => {
 
 exports.addCustomer = (req, res, next) => {
     const customerData = { ...req.body };
+    customerData.password = authUtil.hashPassword(customerData.password);
     customerRepository
         .createCustomer(customerData)
         .then((result) => {
@@ -70,6 +72,7 @@ exports.addCustomer = (req, res, next) => {
 exports.updateCustomer = (req, res, next) => {
     const customerId = req.body._id;
     const customerData = { ...req.body };
+    customerData.password = authUtil.hashPassword(customerData.password);
     customerRepository
         .updateCustomer(customerId, customerData)
         .then((result) => {

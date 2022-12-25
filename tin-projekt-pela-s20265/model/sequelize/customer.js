@@ -47,6 +47,10 @@ const Customer = sequelize.define('Customer', {
                 msg: 'Pole powinno zawierać dokładnie 9 cyfr'
             }
         }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 

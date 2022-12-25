@@ -1,4 +1,6 @@
 const sequelize = require('./sequelize');
+const authUtil = require('../../util/authUtil');
+const passHash = authUtil.hashPassword('12345');
 
 const Customer = require('../../model/sequelize/customer');
 const Equipment = require('../../model/sequelize/equipment');
@@ -35,9 +37,24 @@ module.exports = () => {
         .then((customers) => {
             if (!customers || customers.length === 0) {
                 return Customer.bulkCreate([
-                    { firstName: 'Jan', lastName: 'Kowalski', phoneNo: '424144112' },
-                    { firstName: 'Adam', lastName: 'Nowak', phoneNo: '312311551' },
-                    { firstName: 'Marek', lastName: 'Szewczyk', phoneNo: '736731311' }
+                    {
+                        firstName: 'Jan',
+                        lastName: 'Kowalski',
+                        phoneNo: '424144112',
+                        password: passHash
+                    },
+                    {
+                        firstName: 'Adam',
+                        lastName: 'Nowak',
+                        phoneNo: '312311551',
+                        password: passHash
+                    },
+                    {
+                        firstName: 'Marek',
+                        lastName: 'Szewczyk',
+                        phoneNo: '736731311',
+                        password: passHash
+                    }
                 ]).then(() => {
                     return Customer.findAll();
                 });

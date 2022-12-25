@@ -48,6 +48,7 @@ const Rental = sequelize.define('Rental', {
         }
     },
     endDate: {
+        //TODO sprawdzić czy nie jest wcześniejsza od daty zwrotu
         type: Sequelize.DATE,
         allowNull: true,
         validate: {

@@ -1,27 +1,69 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Wypożyczalnia</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <link rel="stylesheet" href="/style.css" type="text/css" />
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Wypożyczalnia</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/style.css" type="text/css">
-</head>
-
-<body>
-    <header>
-        <h1>Wypożyczalnia sprzętu sportowego</h1>
-        <img src="/images/logo.png" alt="Logo wypożyczalni">
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
-            <li><a href="/customers" class="<%= navLocation == 'customers' ? 'active' : ''%>">Klienci</a>
-            </li>
-            <li><a href="/rentals" class="<%= navLocation == 'rentals' ? 'active' : ''%>">Wypożyczenia</a>
-            </li>
-            <li><a href="/equipment" class="<%= navLocation == 'equipment' ? 'active' : ''%>">Sprzęt</a></li>
-        </ul>
-    </nav>
+    <body>
+        <header>
+            <h1>Wypożyczalnia sprzętu sportowego</h1>
+            <% if(!loggedUser) { %>
+            <div id="login">
+                <h5>Logowanie</h5>
+                <form method="post" action="/login" novalidate>
+                    <span>
+                        <label for="loginPhoneNo">Nr telefonu:</label>
+                        <input type="text" id="loginPhoneNo" name="phoneNo" size="9" />
+                    </span>
+                    <br />
+                    <span>
+                        <label for="loginPassword">Hasło:</label>
+                        <input type="password" id="loginPassword" name="password" size="9" />
+                    </span>
+                    <input type="submit" value="Zaloguj się" />
+                    <span id="loginErrors"><%= loginError ?? '' %></span>
+                </form>
+            </div>
+            <% } else { %>
+            <span
+                >Jesteś zalogowany jako: <%= loggedUser.firstName + ' ' + loggedUser.lastName %>
+            </span>
+            <a href="/logout">Wyloguj się</a>
+            <% } %>
+            <img src="/images/logo.png" alt="Logo wypożyczalni" />
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"
+                        >Strona główna</a
+                    >
+                </li>
+                <li>
+                    <a href="/customers" class="<%= navLocation == 'customers' ? 'active' : ''%>"
+                        >Klienci</a
+                    >
+                </li>
+                <% if(loggedUser) { %>
+                <li>
+                    <a href="/rentals" class="<%= navLocation == 'rentals' ? 'active' : ''%>"
+                        >Wypożyczenia</a
+                    >
+                </li>
+                <% } %>
+                <li>
+                    <a href="/equipment" class="<%= navLocation == 'equipment' ? 'active' : ''%>"
+                        >Sprzęt</a
+                    >
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>

@@ -4,6 +4,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var app = express();
+
+var session = require('express-session');
+app.use(
+    session({
+        secret: 'password',
+        resave: false,
+        saveUninitialized: true
+    })
+);
+
+app.use((req, res, next) => {
+    const loggedUser = req.session.loggedUser;
+    res.locals.loggedUser = loggedUser;
+    if (!res.locals.loginError) {
+        res.locals.loginError = undefined;
+    }
+    next();
+});
 var indexRouter = require('./routes/index');
 var customerRouter = require('./routes/customerRoute');
 var equipmentRouter = require('./routes/equipmentRoute');
@@ -13,12 +32,13 @@ var customerApiRouter = require('./routes/api/customerApiRoute');
 var equipmentApiRouter = require('./routes/api/equipmentApiRoute');
 var rentalApiRouter = require('./routes/api/rentalApiRoute');
 
+var authUtil = require('./util/authUtil');
+
 var sequelizeInit = require('./config/sequelize/init');
+const { util } = require('prettier');
 sequelizeInit().catch((err) => {
     console.log(err);
 });
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/customers', customerRouter);
 app.use('/equipment', equipmentRouter);
-app.use('/rentals', rentalRouter);
+app.use('/rentals', authUtil.permitAuthenticatedUser, rentalRouter);
 
 app.use('/api/customers', customerApiRouter);
 app.use('/api/equipment', equipmentApiRouter);

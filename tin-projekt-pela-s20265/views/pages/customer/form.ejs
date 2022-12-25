@@ -35,7 +35,22 @@
             <% if (validationErrors.find(e => e.path.includes('phoneNo'))) { %> <%=
             validationErrors.find(e => e.path.includes('phoneNo')).message %> <% } %>
         </span>
-        <% if(formMode=='showDetails' ){ %>
+
+        <% if(formMode=='createNew' || formMode=='edit') { %>
+        <label for="password">Hasło: <span class="symbol-required">*</span></label>
+        <input
+            type="text"
+            name="password"
+            id="password"
+            placeholder="*********"
+            value=""
+            class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
+        />
+        <span id="errorPassword" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('password'))) { %> <%=
+            validationErrors.find(e => e.path.includes('password')).message %> <% } %>
+        </span>
+        <% } %> <% if(formMode=='showDetails' ){ %>
         <div class="section-buttons">
             <a href="/customers/edit/<%= customer._id %>" class="form-button-edit">Edytuj</a>
         </div>
