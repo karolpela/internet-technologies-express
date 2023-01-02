@@ -74,10 +74,10 @@ const Rental = sequelize.define('Rental', {
                 args: true,
                 msg: 'isDate'
             },
-            isAfterStartDate: function (endDate) {
+            afterOrEqualToStartDate: function (endDate) {
                 if (!endDate) return;
                 if (this.startDate > endDate) {
-                    throw new Error('isAfterStartDate');
+                    throw new Error('afterOrEqualToStartDate');
                 }
             }
         }
