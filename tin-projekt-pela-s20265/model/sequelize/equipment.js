@@ -13,11 +13,11 @@ const Equipment = sequelize.define('Equipment', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             len: {
                 args: [2, 12],
-                msg: 'Pole powinno zawierać od 2 do 12 znaków'
+                msg: 'len_2_12'
             }
         }
     },
@@ -26,11 +26,11 @@ const Equipment = sequelize.define('Equipment', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             is: {
-                args: /^[1-9][0-9](\.[5])?$/,
-                msg: 'Pole powinno zawierać rozmiar w formacie np. 40 lub 40.5'
+                args: /^[1-9][0-9](\.[05])?$/,
+                msg: 'isShoeSize'
             }
         }
     },
@@ -39,11 +39,11 @@ const Equipment = sequelize.define('Equipment', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             len: {
                 args: [2, 20],
-                msg: 'Pole powinno zawierać od 2 do 20 znaków'
+                msg: 'len_2_20'
             }
         }
     }

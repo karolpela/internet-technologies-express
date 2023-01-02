@@ -33,6 +33,7 @@ var equipmentApiRouter = require('./routes/api/equipmentApiRoute');
 var rentalApiRouter = require('./routes/api/rentalApiRoute');
 
 var authUtil = require('./util/authUtil');
+var cors = require('cors');
 
 var sequelizeInit = require('./config/sequelize/init');
 const { util } = require('prettier');
@@ -43,6 +44,8 @@ sequelizeInit().catch((err) => {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

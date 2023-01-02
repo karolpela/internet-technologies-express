@@ -13,11 +13,11 @@ const Rental = sequelize.define('Rental', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             isInt: {
                 args: true,
-                msg: 'Pole powinno zawierać liczbę całkowitą'
+                msg: 'isInteger'
             }
         }
     },
@@ -26,11 +26,11 @@ const Rental = sequelize.define('Rental', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             isInt: {
                 args: true,
-                msg: 'Pole powinno zawierać liczbę całkowitą'
+                msg: 'isInteger'
             }
         }
     },
@@ -39,25 +39,46 @@ const Rental = sequelize.define('Rental', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             isDate: {
                 args: true,
-                msg: 'Pole powinno zawierać datę'
+                msg: 'isDate'
+            },
+            notInFuture: function (startDate) {
+                let nowDate = new Date(),
+                    month = '' + (nowDate.getMonth() + 1),
+                    day = '' + nowDate.getDate(),
+                    year = nowDate.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+                const nowString = [year, month, day].join('-');
+
+                let nowDay = new Date(nowString);
+                let startDay = new Date(startDate);
+                if (startDay.getTime() > nowDay.getTime()) {
+                    throw new Error('notInFuture');
+                }
             }
         }
     },
     endDate: {
-        //TODO sprawdzić czy nie jest wcześniejsza od daty zwrotu
         type: Sequelize.DATE,
         allowNull: true,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             isDate: {
                 args: true,
-                msg: 'Pole powinno zawierać datę'
+                msg: 'isDate'
+            },
+            isAfterStartDate: function (endDate) {
+                if (!endDate) return;
+                if (this.startDate > endDate) {
+                    throw new Error('isAfterStartDate');
+                }
             }
         }
     }

@@ -13,11 +13,11 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             len: {
                 args: [2, 20],
-                msg: 'Pole powinno zawierać od 2 do 20 znaków'
+                msg: 'len_2_20'
             }
         }
     },
@@ -26,11 +26,11 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             len: {
                 args: [2, 40],
-                msg: 'Pole powinno zawierać od 2 do 40 znaków'
+                msg: 'len_2_40'
             }
         }
     },
@@ -40,17 +40,19 @@ const Customer = sequelize.define('Customer', {
         unique: true,
         validate: {
             notEmpty: {
-                msg: 'Pole jest wymagane'
+                msg: 'notEmpty'
             },
             is: {
                 args: /^\d{9}$/,
-                msg: 'Pole powinno zawierać dokładnie 9 cyfr'
+                msg: 'isPhoneNo'
             }
         }
     },
     password: {
         type: Sequelize.STRING,
-        allowNull: false
+        //TODO change to false!
+        allowNull: true,
+        default: '12345'
     }
 });
 
