@@ -53,6 +53,14 @@ const Customer = sequelize.define('Customer', {
         //TODO change to false!
         allowNull: true,
         default: '12345'
+    },
+    role: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            isIn: [['admin', 'employee', 'customer']],
+            msg: 'isInRole'
+        }
     }
 });
 

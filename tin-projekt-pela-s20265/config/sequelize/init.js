@@ -41,19 +41,22 @@ module.exports = () => {
                         firstName: 'Jan',
                         lastName: 'Kowalski',
                         phoneNo: '424144112',
-                        password: passHash
+                        password: passHash,
+                        role: 'admin'
                     },
                     {
                         firstName: 'Adam',
                         lastName: 'Nowak',
                         phoneNo: '312311551',
-                        password: passHash
+                        password: passHash,
+                        role: 'employee'
                     },
                     {
                         firstName: 'Marek',
                         lastName: 'Szewczyk',
                         phoneNo: '736731311',
-                        password: passHash
+                        password: passHash,
+                        role: 'customer'
                     }
                 ]).then(() => {
                     return Customer.findAll();

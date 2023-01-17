@@ -7,6 +7,8 @@ var logger = require('morgan');
 var app = express();
 
 var session = require('express-session');
+var authApiRouter = require('./routes/api/authApiRoute');
+
 app.use(
     session({
         secret: 'password',
@@ -74,6 +76,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
+app.use('/api/auth', authApiRouter);
+
 app.use('/customers', customerRouter);
 app.use('/equipment', equipmentRouter);
 app.use('/rentals', authUtil.permitAuthenticatedUser, rentalRouter);

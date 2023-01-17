@@ -16,7 +16,33 @@ exports.getRentalById = (req, res, next) => {
     rentalRepository.getRentalById(rentalId).then((rental) => {
         if (!rental) {
             res.status(404).json({
-                message: `Brak rentals z id ${rentalId}`
+                message: `Brak wypożyczenia z id ${rentalId}`
+            });
+        } else {
+            res.status(200).json(rental);
+        }
+    });
+};
+exports.getCustomerRentalById = (req, res, next) => {
+    const customerId = req.params.customerId;
+    const rentalId = req.params.rentalId;
+    rentalRepository.getCustomerRentalById(customerId, rentalId).then((rental) => {
+        if (!rental) {
+            res.status(404).json({
+                message: `Brak wypożyczenia z id ${rentalId} dla użytkownika z id ${customerId}`
+            });
+        } else {
+            res.status(200).json(rental);
+        }
+    });
+};
+
+exports.getRentalsByCustomer = (req, res, next) => {
+    const customerId = req.params.customerId;
+    rentalRepository.getRentalsByCustomer(customerId).then((rental) => {
+        if (!rental) {
+            res.status(404).json({
+                message: `Brak wypożyczeń użytkownika z id ${customerId}`
             });
         } else {
             res.status(200).json(rental);

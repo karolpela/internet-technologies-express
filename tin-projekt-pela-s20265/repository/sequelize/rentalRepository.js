@@ -34,6 +34,43 @@ exports.getRentalById = (rentalId) => {
     });
 };
 
+exports.getCustomerRentalById = (customerId, rentalId) => {
+    return Rental.findOne({
+        where: {
+            _id: rentalId,
+            customerId: customerId
+        },
+        include: [
+            {
+                model: Customer,
+                as: 'customer'
+            },
+            {
+                model: Equipment,
+                as: 'equipment'
+            }
+        ]
+    });
+};
+
+exports.getRentalsByCustomer = (customerId) => {
+    return Rental.findAll({
+        where: {
+            customerId: customerId
+        },
+        include: [
+            {
+                model: Customer,
+                as: 'customer'
+            },
+            {
+                model: Equipment,
+                as: 'equipment'
+            }
+        ]
+    });
+};
+
 exports.createRental = (newRentalData) => {
     console.log(JSON.stringify(newRentalData));
     if (newRentalData.endDate == '') newRentalData.endDate = null;
