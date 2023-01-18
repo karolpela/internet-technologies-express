@@ -14,8 +14,8 @@ router.get(
     rentalApiController.getRentalsByCustomer
 );
 router.get('/:rentalId', [isAuth, isGettingOwnResources], rentalApiController.getRentalById);
-router.post('/', isEmployee, rentalApiController.createRental);
-router.put('/:rentalId', isEmployee, rentalApiController.updateRental);
-router.delete('/:rentalId', isEmployee, rentalApiController.deleteRental);
+router.post('/', [isAuth, isEmployee], rentalApiController.createRental);
+router.put('/:rentalId', [isAuth, isEmployee], rentalApiController.updateRental);
+router.delete('/:rentalId', [isAuth, isEmployee], rentalApiController.deleteRental);
 
 module.exports = router;

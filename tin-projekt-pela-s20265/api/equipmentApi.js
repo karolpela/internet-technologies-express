@@ -13,8 +13,10 @@ exports.getEquipment = (req, res, next) => {
 };
 
 exports.getEquipmentById = (req, res, next) => {
+    const customerId = req.user.userId;
+    const userRole = req.user.role;
     const equipmentId = req.params.equipmentId;
-    equipmentRepository.getEquipmentById(equipmentId).then((equipment) => {
+    equipmentRepository.getEquipmentById(customerId, equipmentId, userRole).then((equipment) => {
         if (!equipment) {
             res.status(404).json({
                 message: `Brak sprzętu z id ${equipmentId}`

@@ -7,8 +7,8 @@ const isAuth = require('../../middleware/isAuth');
 const isEmployee = require('../../middleware/isEmployee');
 const isGettingOwnResources = require('../../middleware/isGettingOwnResources');
 
-router.get('/', customerApiController.getCustomers);
-router.get('/:customerId', customerApiController.getCustomerById);
+router.get('/', [isAuth, isEmployee], customerApiController.getCustomers);
+router.get('/:customerId', [isAuth, isEmployee], customerApiController.getCustomerById);
 router.get(
     '/:customerId/rentals',
     [isAuth, isGettingOwnResources],
@@ -20,9 +20,9 @@ router.get(
     rentalApiController.getCustomerRentalById
 );
 
-router.post('/', customerApiController.createCustomer);
+router.post('/', [isAuth, isEmployee], customerApiController.createCustomer);
 
-router.put('/:customerId', customerApiController.updateCustomer);
+router.put('/:customerId', [isAuth, isEmployee], customerApiController.updateCustomer);
 
 router.delete('/:customerId', [isAuth, isEmployee], customerApiController.deleteCustomer);
 
