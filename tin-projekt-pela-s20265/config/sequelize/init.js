@@ -5,6 +5,8 @@ const passHash = authUtil.hashPassword('12345');
 const Customer = require('../../model/sequelize/customer');
 const Equipment = require('../../model/sequelize/equipment');
 const Rental = require('../../model/sequelize/rental');
+const Service = require('../../model/sequelize/service');
+const Repair = require('../../model/sequelize/repair');
 
 module.exports = () => {
     Customer.hasMany(Rental, {
@@ -28,7 +30,41 @@ module.exports = () => {
         foreignKey: { name: 'equipmentId', allowNull: false }
     });
 
-    let allCustomers, allEquipment;
+    Equipment.hasMany(Service, {
+        as: 'services',
+        foreignKey: { name: 'equipmentId', allowNull: false },
+        constraints: true,
+        onDelete: 'CASCADE'
+    });
+    Service.belongsTo(Equipment, {
+        as: 'equipment',
+        foreignKey: { name: 'equipmentId', allowNull: false }
+    });
+
+    Service.hasMany(Repair, {
+        as: 'repairs',
+        foreignKey: { name: 'serviceId', allowNull: false },
+        constraints: true,
+        onDelete: 'CASCADE'
+    });
+    Repair.belongsTo(Service, {
+        as: 'service',
+        foreignKey: { name: 'serviceId', allowNull: false }
+    });
+
+    Repair.belongsTo(Customer, {
+        // didn't update name -> only Employees should be assigned to repairs
+        as: 'employee',
+        foreignKey: { name: 'employeeId', allowNull: false }
+    });
+    Customer.hasMany(Repair, {
+        as: 'repairs',
+        foreignKey: { name: 'employeeId', allowNull: false },
+        constraints: true,
+        onDelete: 'CASCADE'
+    });
+
+    let allCustomers, allEquipment, allServices;
     return sequelize
         .sync({ force: true })
         .then(() => {
@@ -110,6 +146,64 @@ module.exports = () => {
                 ]);
             } else {
                 return rentals;
+            }
+        })
+        .then(() => {
+            // allRentals variable is not needed
+            return Service.findAll();
+        })
+        .then((services) => {
+            if (!services || services.length === 0) {
+                return Service.bulkCreate([
+                    {
+                        equipmentId: allEquipment[0]._id,
+                        type: 'podstawowy'
+                    },
+                    {
+                        equipmentId: allEquipment[1]._id,
+                        type: 'rozszerzony'
+                    },
+                    {
+                        equipmentId: allEquipment[0]._id,
+                        type: 'pełny'
+                    },
+                    {
+                        equipmentId: allEquipment[2]._id,
+                        type: 'podstawowy'
+                    }
+                ]);
+            } else {
+                return services;
+            }
+        })
+        .then((services) => {
+            allServices = services;
+            return Repair.findAll();
+        })
+        .then((repairs) => {
+            if (!repairs || repairs.length === 0) {
+                return Repair.bulkCreate([
+                    {
+                        serviceId: allServices[0]._id,
+                        employeeId: 2,
+                        problem: 'Płoza do wymiany',
+                        status: 'zakonczona'
+                    },
+                    {
+                        serviceId: allServices[1]._id,
+                        employeeId: allCustomers[1]._id,
+                        problem: 'Kółka do wymiany',
+                        status: 'w trakcie'
+                    },
+                    {
+                        serviceId: allServices[2]._id,
+                        employeeId: allCustomers[1]._id,
+                        problem: 'Łożyska do nasmarowania',
+                        status: 'zgloszona'
+                    }
+                ]);
+            } else {
+                return repairs;
             }
         });
 };

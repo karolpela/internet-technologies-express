@@ -24,7 +24,7 @@ exports.getRentalById = (req, res, next) => {
     });
 };
 exports.getCustomerRentalById = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     const rentalId = req.params.rentalId;
     rentalRepository.getCustomerRentalById(customerId, rentalId).then((rental) => {
         if (!rental) {
@@ -38,7 +38,7 @@ exports.getCustomerRentalById = (req, res, next) => {
 };
 
 exports.getRentalsByCustomer = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     rentalRepository.getRentalsByCustomer(customerId).then((rental) => {
         if (!rental) {
             res.status(404).json({

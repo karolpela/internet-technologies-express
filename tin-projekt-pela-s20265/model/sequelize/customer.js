@@ -58,8 +58,10 @@ const Customer = sequelize.define('Customer', {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-            isIn: [['admin', 'employee', 'customer']],
-            msg: 'isInRole'
+            isIn: {
+                args: [['admin', 'employee', 'customer']],
+                msg: 'isInRole'
+            }
         }
     }
 });

@@ -3,27 +3,31 @@ const router = express.Router();
 
 const customerApiController = require('../../api/customerApi');
 const rentalApiController = require('../../api/rentalApi');
+const repairApiController = require('../../api/repairApi');
 const isAuth = require('../../middleware/isAuth');
 const isEmployee = require('../../middleware/isEmployee');
-const isGettingOwnResources = require('../../middleware/isGettingOwnResources');
+const ownOrAdmin = require('../../middleware/ownOrAdmin');
+const ownOrEmployee = require('../../middleware/ownOrEmployee');
 
 router.get('/', [isAuth, isEmployee], customerApiController.getCustomers);
-router.get('/:customerId', [isAuth, isEmployee], customerApiController.getCustomerById);
+router.get('/:userId', [isAuth, isEmployee], customerApiController.getCustomerById);
+router.get('/:userId/rentals', [isAuth, ownOrEmployee], rentalApiController.getRentalsByCustomer);
+router.get('/:userId/repairs', [isAuth, ownOrAdmin], repairApiController.getRepairsByEmployee);
 router.get(
-    '/:customerId/rentals',
-    [isAuth, isGettingOwnResources],
-    rentalApiController.getRentalsByCustomer
+    '/:userId/rentals/:rentalId',
+    [isAuth, ownOrEmployee],
+    rentalApiController.getCustomerRentalById
 );
 router.get(
-    '/:customerId/rentals/:rentalId',
-    [isAuth, isGettingOwnResources],
-    rentalApiController.getCustomerRentalById
+    '/:userId/repairs/:repairId',
+    [isAuth, ownOrAdmin],
+    repairApiController.getEmployeeRepairById
 );
 
 router.post('/', [isAuth, isEmployee], customerApiController.createCustomer);
 
-router.put('/:customerId', [isAuth, isEmployee], customerApiController.updateCustomer);
+router.put('/:userId', [isAuth, isEmployee], customerApiController.updateCustomer);
 
-router.delete('/:customerId', [isAuth, isEmployee], customerApiController.deleteCustomer);
+router.delete('/:userId', [isAuth, isEmployee], customerApiController.deleteCustomer);
 
 module.exports = router;

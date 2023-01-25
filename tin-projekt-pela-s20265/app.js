@@ -33,6 +33,8 @@ var rentalRouter = require('./routes/rentalRoute');
 var customerApiRouter = require('./routes/api/customerApiRoute');
 var equipmentApiRouter = require('./routes/api/equipmentApiRoute');
 var rentalApiRouter = require('./routes/api/rentalApiRoute');
+var repairApiRouter = require('./routes/api/repairApiRoute');
+var serviceApiRouter = require('./routes/api/serviceApiRoute');
 
 var authUtil = require('./util/authUtil');
 var cors = require('cors');
@@ -85,6 +87,8 @@ app.use('/rentals', authUtil.permitAuthenticatedUser, rentalRouter);
 app.use('/api/customers', customerApiRouter);
 app.use('/api/equipment', equipmentApiRouter);
 app.use('/api/rentals', rentalApiRouter);
+app.use('/api/repairs', repairApiRouter);
+app.use('/api/services', serviceApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

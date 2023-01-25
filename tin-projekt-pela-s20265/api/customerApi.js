@@ -12,7 +12,7 @@ exports.getCustomers = (req, res, next) => {
 };
 
 exports.getCustomerById = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     customerRepository.getCustomerById(customerId).then((customer) => {
         if (!customer) {
             res.status(404).json({
@@ -39,7 +39,7 @@ exports.createCustomer = (req, res, next) => {
 };
 
 exports.updateCustomer = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     customerRepository
         .updateCustomer(customerId, req.body)
         .then((result) => {
@@ -54,7 +54,7 @@ exports.updateCustomer = (req, res, next) => {
 };
 
 exports.deleteCustomer = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     customerRepository
         .deleteCustomer(customerId)
         .then((result) => {

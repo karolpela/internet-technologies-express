@@ -20,7 +20,7 @@ exports.showAddCustomerForm = (req, res, next) => {
 };
 
 exports.showEditCustomerForm = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     customerRepository.getCustomerById(customerId).then((customer) => {
         res.render('pages/customer/form', {
             customer: customer,
@@ -35,7 +35,7 @@ exports.showEditCustomerForm = (req, res, next) => {
 };
 
 exports.showCustomerDetails = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     customerRepository.getCustomerById(customerId).then((customer) =>
         res.render('pages/customer/form', {
             customer: customer,
@@ -92,7 +92,7 @@ exports.updateCustomer = (req, res, next) => {
 };
 
 exports.deleteCustomer = (req, res, next) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.userId;
     customerRepository.deleteCustomer(customerId).then((result) => {
         res.redirect('/customers');
     });
