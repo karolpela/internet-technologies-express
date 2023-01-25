@@ -50,13 +50,13 @@ const Customer = sequelize.define('Customer', {
     },
     password: {
         type: Sequelize.STRING,
-        //TODO change to false!
-        allowNull: true,
+        allowNull: false,
         default: '12345'
     },
     role: {
         type: Sequelize.STRING,
         allowNull: false,
+        defaultValue: 'customer',
         validate: {
             isIn: {
                 args: [['admin', 'employee', 'customer']],

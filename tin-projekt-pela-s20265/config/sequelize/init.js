@@ -93,6 +93,13 @@ module.exports = () => {
                         phoneNo: '736731311',
                         password: passHash,
                         role: 'customer'
+                    },
+                    {
+                        firstName: 'Emil',
+                        lastName: 'Górski',
+                        phoneNo: '521515616',
+                        password: passHash,
+                        role: 'employee'
                     }
                 ]).then(() => {
                     return Customer.findAll();
@@ -187,7 +194,7 @@ module.exports = () => {
                         serviceId: allServices[0]._id,
                         employeeId: 2,
                         problem: 'Płoza do wymiany',
-                        status: 'zakonczona'
+                        status: 'zakończona'
                     },
                     {
                         serviceId: allServices[1]._id,
@@ -199,7 +206,7 @@ module.exports = () => {
                         serviceId: allServices[2]._id,
                         employeeId: allCustomers[1]._id,
                         problem: 'Łożyska do nasmarowania',
-                        status: 'zgloszona'
+                        status: 'zgłoszona'
                     }
                 ]);
             } else {

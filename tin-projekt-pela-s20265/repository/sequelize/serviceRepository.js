@@ -25,26 +25,6 @@ exports.getServiceTypes = () => {
     return allowedTypes;
 };
 
-exports.getServicesByStatus = (statuses) => {
-    return Service.findAll({
-        where: {
-            status: {
-                [Sequelize.Op.like]: 'nowy'
-            }
-        },
-        include: [
-            {
-                model: Equipment,
-                as: 'equipment'
-            },
-            {
-                model: Repair,
-                as: 'repairs'
-            }
-        ]
-    });
-};
-
 exports.getServiceById = (serviceId) => {
     return Service.findByPk(serviceId, {
         include: [

@@ -1,14 +1,27 @@
 const customerRepository = require('../repository/sequelize/customerRepository');
+const authUtil = require('../util/authUtil');
 
 exports.getCustomers = (req, res, next) => {
-    customerRepository
-        .getCustomers()
-        .then((customers) => {
-            res.status(200).json(customers);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    const roles = req.query.role;
+    if (roles === undefined) {
+        customerRepository
+            .getCustomers()
+            .then((customers) => {
+                res.status(200).json(customers);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    } else {
+        customerRepository
+            .getCustomersByRole(roles)
+            .then((customers) => {
+                res.status(200).json(customers);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 };
 
 exports.getCustomerById = (req, res, next) => {
@@ -25,6 +38,7 @@ exports.getCustomerById = (req, res, next) => {
 };
 
 exports.createCustomer = (req, res, next) => {
+    req.body.password = authUtil.hashPassword(req.body.password);
     customerRepository
         .createCustomer(req.body)
         .then((newObj) => {

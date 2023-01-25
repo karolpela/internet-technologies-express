@@ -54,7 +54,7 @@ const Repair = sequelize.define('Repair', {
             notEmpty: {
                 msg: 'notEmpty'
             },
-            isIn: ['zgłoszona', 'w trakcie', 'zakończona']
+            isIn: [['zgłoszona', 'w trakcie', 'zakończona']]
         }
     }
 });

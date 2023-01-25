@@ -11,7 +11,12 @@ router.get('/', [isAuth, isAdmin], repairApiController.getRepairs);
 router.get('/employee/:userId', [isAuth, ownOrAdmin], repairApiController.getRepairsByEmployee);
 router.get('/statuses', [isAuth, isEmployee], repairApiController.getRepairStatuses);
 
-router.get('/:repairId', [isAuth, isEmployee], repairApiController.getRepairById);
+router.get('/:repairId', [isAuth, isAdmin], repairApiController.getRepairById);
+router.get(
+    '/employee/:userId/repairs/:repairId',
+    [isAuth, ownOrAdmin],
+    repairApiController.getRepairById
+);
 
 router.post('/', [isAuth, isAdmin], repairApiController.createRepair);
 

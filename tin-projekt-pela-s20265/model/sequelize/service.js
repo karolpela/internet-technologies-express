@@ -39,13 +39,16 @@ const Service = sequelize.define('Service', {
             let repairs = this.repairs;
             if (!repairs) {
                 return 'nowy';
+            }
+            if (repairs.length === 0) {
+                return 'nowy';
             } else {
-                repairs.forEach((repair) => {
-                    if (repair.status === 'zgłoszona' || repair.status === 'w trakcie') {
-                        return 'w trakcie';
-                    }
-                });
-                return 'zakończony';
+                let unfinished = repairs.every(
+                    (repair) =>
+                        repair.dataValues.status === 'zgłoszona' ||
+                        repair.dataValues.status === 'w trakcie'
+                );
+                return unfinished ? 'w trakcie' : 'zakończony';
             }
         }
     }

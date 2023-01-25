@@ -6,6 +6,14 @@ exports.getCustomers = () => {
     return Customer.findAll();
 };
 
+exports.getCustomersByRole = (roles) => {
+    return Customer.findAll({
+        where: {
+            role: roles
+        }
+    });
+};
+
 exports.getCustomerById = (customerId) => {
     return Customer.findByPk(customerId, {
         include: [

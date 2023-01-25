@@ -1,26 +1,14 @@
 const serviceRepository = require('../repository/sequelize/serviceRepository');
 
 exports.getServices = (req, res, next) => {
-    const statuses = req.query.status;
-    if (statuses === undefined) {
-        serviceRepository
-            .getServices()
-            .then((services) => {
-                res.status(200).json(services);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    } else {
-        serviceRepository
-            .getServicesByStatus(statuses)
-            .then((services) => {
-                res.status(200).json(services);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    serviceRepository
+        .getServices()
+        .then((services) => {
+            res.status(200).json(services);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.getServiceTypes = (req, res, next) => {
