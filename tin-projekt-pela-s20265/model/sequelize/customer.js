@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../config/sequelize/sequelize');
+const { customerRoles } = require('./customerRoles');
 
 const Customer = sequelize.define('Customer', {
     _id: {
@@ -50,7 +51,7 @@ const Customer = sequelize.define('Customer', {
     },
     password: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         default: '12345'
     },
     role: {
@@ -59,7 +60,7 @@ const Customer = sequelize.define('Customer', {
         defaultValue: 'customer',
         validate: {
             isIn: {
-                args: [['admin', 'employee', 'customer']],
+                args: [customerRoles],
                 msg: 'isInRole'
             }
         }

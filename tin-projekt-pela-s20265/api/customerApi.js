@@ -1,3 +1,4 @@
+const { customerRoles } = require('../model/sequelize/customerRoles');
 const customerRepository = require('../repository/sequelize/customerRepository');
 const authUtil = require('../util/authUtil');
 
@@ -22,6 +23,10 @@ exports.getCustomers = (req, res, next) => {
                 console.log(err);
             });
     }
+};
+
+exports.getCustomersRoles = (req, res, next) => {
+    res.status(200).json(customerRoles);
 };
 
 exports.getCustomerById = (req, res, next) => {

@@ -42,6 +42,7 @@ exports.createCustomer = (newCustomerData) => {
 };
 
 exports.updateCustomer = (customerId, customerData) => {
+    customerData.password = null;
     return Customer.update(customerData, { where: { _id: customerId } });
 };
 
